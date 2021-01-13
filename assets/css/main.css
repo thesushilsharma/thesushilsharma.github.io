@@ -245,9 +245,8 @@ a:hover {
   border-color: var(--bordercolor) !important;
 }
 
-#hero {
+#particles-js {
   padding-top: 65px;
-  background: #f1f3f6;
   max-width: 100%;
   overflow: hidden;
 }
@@ -259,11 +258,11 @@ a:hover {
   font-family: Rubik, sans-serif;
 }
 
-#hero .user-profile-image {
+#particles-js .user-profile-image {
   margin-bottom: 20px;
 }
 
-#hero h2 {
+#particles-js h2 {
   font-size: 66px;
   color: #000;
   font-weight: 700;
@@ -271,12 +270,12 @@ a:hover {
 }
 
 @media screen and (max-width: 767px) {
-  #hero h2 {
+  #particles-js h2 {
     font-size: 50px;
   }
 }
 
-#hero h3 {
+#particles-js h3 {
   font-size: 46px;
   color: #000;
   font-weight: 700;
@@ -284,18 +283,18 @@ a:hover {
 }
 
 @media screen and (max-width: 767px) {
-  #hero h3 {
+  #particles-js h3 {
     font-size: 30px;
   }
 }
 
-#hero h4 {
+#particles-js h4 {
   font-size: 16px;
   font-weight: 700;
   color: #5ab9ea;
 }
 
-#hero .btn-primary {
+#particles-js .btn-primary {
   background: var(--primarycolor);
   border-color: var(--primarycolor);
   color: #1f2833;
@@ -308,7 +307,9 @@ a:hover {
 }
 
 .hero-image img {
-  width: 100%;
+  width: auto;
+  height: auto;
+ 
 }
 
 canvas.particles-js-canvas-el {
@@ -464,10 +465,6 @@ canvas.particles-js-canvas-el {
   position: relative;
 }
 
-.gallery img.gallery-item {
-  cursor: pointer;
-}
-
 .se-pre-con {
   position: fixed;
   left: 0;
@@ -532,7 +529,7 @@ footer.footer.light {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 544px) {
   .hero-image {
     display: none;
   }
@@ -562,7 +559,7 @@ footer.footer.light {
     margin-bottom: 10px;
   }
 
-  #hero {
+  #particles-js {
     padding-top: 70px;
   }
 
@@ -584,7 +581,7 @@ footer.footer.light {
 /*--- preloader ---*/
 
 .dark #preloader {
-  background-color: #233d63;
+  background-color: #05386b;
 }
 
 #preloader {
@@ -593,7 +590,7 @@ footer.footer.light {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #233d63;
+  background-color: #05386b;
   z-index: 999999;
 }
 
@@ -617,7 +614,7 @@ footer.footer.light {
   width: 50px;
   height: 50px;
   border-radius: 100%;
-  background: #f82462;
+  background: #5cdb95;
   -webkit-animation: preloader 1.3s linear infinite;
   animation: preloader 1.3s linear infinite;
 }
