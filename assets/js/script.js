@@ -1,0 +1,47 @@
+// repeated variables
+var $window = $(window);
+var $root = $("html, body");
+
+$(document).ready(function () {
+  "use strict";
+  typedJS();
+});
+
+function menuToggler() {
+  "use strict";
+
+}
+/*-------------------------
+        TYPED JS
+-------------------------*/
+function typedJS() {
+  "use strict";
+
+  var options = {
+    strings: $(".element").attr("data-elements").split(","),
+    typeSpeed: 100,
+    backDelay: 3000,
+    backSpeed: 50,
+    loop: true,
+  };
+  var typed = new Typed(".element", options);
+}
+
+
+/*------------------------
+      Scroll to Top
+--------------------------*/
+$(window).scroll(function() {
+  if ($(this).scrollTop() > 100) {
+    $('.back-to-top').fadeIn('slow');
+  } else {
+    $('.back-to-top').fadeOut('slow');
+  }
+});
+
+$('.back-to-top').click(function() {
+  $('html, body').animate({
+    scrollTop: 0
+  }, 1500, 'easeInOutExpo');
+  return false;
+});
