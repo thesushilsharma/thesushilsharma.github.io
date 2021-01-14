@@ -19,10 +19,17 @@ function typedJS() {
 
   var options = {
     strings: $(".element").attr("data-elements").split(","),
-    typeSpeed: 100,
-    backDelay: 3000,
-    backSpeed: 50,
-    loop: true,
+   typeSpeed: 60,
+			loop: true,
+			backDelay: 3000,
+			backSpeed: 30,
+			showCursor: true,
+			cursorChar: '$',
+			shuffle: true,
+			autoInsertCss: true,
+			fadeOut: true,
+			fadeOutClass: 'typed-fade-out',
+			fadeOutDelay: 500
   };
   var typed = new Typed(".element", options);
 }
