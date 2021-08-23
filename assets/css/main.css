@@ -2,17 +2,17 @@
 
 :root {
   --primarycolor: #66fcf1;
-  --bodycolor: #44318d;
+  --bodycolor: #a8dadc;
   --bodybackground: #0b0c10;
-  --bordercolor: #802bb1;
+  --bordercolor: #caf0f8;
   --txtcolor: #fbeec1;
 }
 
 .dark {
   --primarycolor: #66fcf1;
-  --bodycolor: #44318d;
+  --bodycolor: #a8dadc;
   --bodybackground: #0b0c10;
-  --bordercolor: #802bb1;
+  --bordercolor: #caf0f8;
   --txtcolor: #fbeec1;
 }
 
@@ -782,7 +782,7 @@ footer.footer.light {
 #facts .content h3 {
   font-weight: 700;
   font-size: 26px;
-  color: #173b6c;
+  color: #96c9dc;
 }
 
 #facts .content ul {
