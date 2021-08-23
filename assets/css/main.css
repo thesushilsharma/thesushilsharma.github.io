@@ -65,7 +65,7 @@
 
 body {
   font-family: Rubik, sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   background: var(--bodybackground);
   color: var(--txtcolor);
   line-height: 32px;
@@ -150,7 +150,7 @@ h6 {
 
 .section-title p {
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 17px;
   text-align: inherit;
 }
 
