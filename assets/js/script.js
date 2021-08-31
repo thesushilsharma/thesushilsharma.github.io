@@ -12,19 +12,19 @@ function menuToggler() {
 
 }
 /*-------------------------
-        TYPED JS
+        TYPED JS www.mattboldt.com
 -------------------------*/
 function typedJS() {
   "use strict";
 
   var options = {
-    strings: $(".element").attr("data-elements").split(","),
+    strings: $(".element").attr("data-elements").split(";"),
    typeSpeed: 60,
 			loop: true,
 			backDelay: 3000,
 			backSpeed: 30,
 			showCursor: true,
-			cursorChar: '$',
+			cursorChar: '#',
 			shuffle: true,
 			autoInsertCss: true,
 			fadeOut: true,
