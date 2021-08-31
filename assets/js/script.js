@@ -19,7 +19,14 @@ function typedJS() {
   "use strict";
 
   var options = {
-    strings: $(".element").attr("data-elements").split(","),
+    strings: [
+      'Web Master',
+      'Web Designer',
+      'Web Developer',
+      'Front End Developer',
+      'Back End Developer',
+      'Software Developer'
+    ],
     typeSpeed: 30,
     loop: true,
     backDelay: 3000,
