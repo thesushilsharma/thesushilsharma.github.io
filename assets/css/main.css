@@ -52,13 +52,13 @@
     width: 100%;
   }
 }
-
-.map {
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  filter: grayscale(100%);
+.logo {
+  display: block;
+  float: left;
+  font-size: 1.5em;
+  text-decoration: none;
+  margin-top: 10px;
+  line-height: normal;
 }
 
 body {
