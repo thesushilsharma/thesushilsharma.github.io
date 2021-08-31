@@ -23,8 +23,8 @@ function typedJS() {
       'Web Master',
       'Web Designer',
       'Web Developer',
-      'Front End Developer',
-      'Back End Developer',
+      'Front End Web Developer',
+      'Back End Web Developer',
       'Software Developer'
     ],
     typeSpeed: 30,
