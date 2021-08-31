@@ -18,7 +18,7 @@ function typedJS() {
   "use strict";
 
   var options = {
-    strings: $(".element").attr("data-elements").split("."),
+    strings: $(".element").attr("data-elements").split(","),
    typeSpeed: 60,
 			loop: true,
 			backDelay: 3000,
