@@ -12,24 +12,26 @@ function menuToggler() {
 
 }
 /*-------------------------
-        TYPED JS www.mattboldt.com
+        TYPED JS 
+    www.mattboldt.com
 -------------------------*/
 function typedJS() {
   "use strict";
 
   var options = {
     strings: $(".element").attr("data-elements").split(","),
-   typeSpeed: 60,
-			loop: true,
-			backDelay: 3000,
-			backSpeed: 30,
-			showCursor: true,
-			cursorChar: '#',
-			shuffle: true,
-			autoInsertCss: true,
-			fadeOut: true,
-			fadeOutClass: 'typed-fade-out',
-			fadeOutDelay: 500
+    typeSpeed: 30,
+    loop: true,
+    backDelay: 3000,
+    backSpeed: 30,
+    smartBackspace: true,
+    showCursor: true,
+    cursorChar: '#',
+    shuffle: true,
+    autoInsertCss: true,
+    fadeOut: true,
+    fadeOutClass: 'typed-fade-out',
+    fadeOutDelay: 500
   };
   var typed = new Typed(".element", options);
 }
@@ -38,7 +40,7 @@ function typedJS() {
 /*------------------------
       Scroll to Top
 --------------------------*/
-$(window).scroll(function() {
+$(window).scroll(function () {
   if ($(this).scrollTop() > 100) {
     $('.back-to-top').fadeIn('slow');
   } else {
@@ -46,7 +48,7 @@ $(window).scroll(function() {
   }
 });
 
-$('.back-to-top').click(function() {
+$('.back-to-top').click(function () {
   $('html, body').animate({
     scrollTop: 0
   }, 1500, 'easeInOutExpo');
