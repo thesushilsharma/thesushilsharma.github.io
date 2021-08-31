@@ -5,6 +5,7 @@ var $root = $("html, body");
 $(document).ready(function () {
   "use strict";
   typedJS();
+  $("body").scrollspy({ target: ".scrollspy", offset: 100 });
 });
 
 function menuToggler() {
