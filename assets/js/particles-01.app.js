@@ -12,7 +12,6 @@
 /* Otherwise just put the config content (json): */
 
 particlesJS('particles-js',
-
 {
   "particles": {
     "number": {
@@ -29,7 +28,7 @@ particlesJS('particles-js',
       "type": ["edge", "path", "circle", "triangle"],
       "stroke": {
         "width": 0,
-        "color": "#000000"
+        "color": "ffffff"
       },
       "polygon": {
         "nb_sides": 5
@@ -42,7 +41,7 @@ particlesJS('particles-js',
     },
     "opacity": {
       "value": 0.5,
-      "random": false,
+      "random": true,
       "anim": {
         "enable": false,
         "speed": 1,
@@ -51,7 +50,7 @@ particlesJS('particles-js',
       }
     },
     "size": {
-      "value": 15,
+      "value": 10,
       "random": true,
       "anim": {
         "enable": false,
@@ -70,10 +69,11 @@ particlesJS('particles-js',
     "move": {
       "enable": true,
       "speed": 3,
-      "direction": "none",
+      "direction": "bottom",
       "random": false,
       "straight": false,
       "out_mode": "out",
+      "bounce": false,
       "attract": {
         "enable": false,
         "rotateX": 600,
@@ -98,18 +98,19 @@ particlesJS('particles-js',
       "grab": {
         "distance": 400,
         "line_linked": {
-          "opacity": 1
+          "opacity": 0.5
         }
       },
       "bubble": {
         "distance": 400,
-        "size": 40,
-        "duration": 2,
-        "opacity": 8,
+        "size": 4,
+        "duration": 0.3,
+        "opacity": 1,
         "speed": 3
       },
       "repulse": {
-        "distance": 200
+        "distance": 200,
+        "duration": 0.4
       },
       "push": {
         "particles_nb": 4
