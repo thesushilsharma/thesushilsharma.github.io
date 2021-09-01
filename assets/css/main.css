@@ -69,12 +69,6 @@ body {
   line-height: 32px;
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6,
 h1,
 h2,
 h3,
@@ -84,27 +78,30 @@ h6 {
   font-family: "Times New Roman", Times, serif;
 }
 
-.background-image-maker {
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-size: cover;
-  background-position: top right;
-  z-index: -1;
-}
-
-.holder-image img {
-  display: none;
-}
-
 .content {
   position: relative;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   margin-bottom: 30px;
+}
+
+#facts .service-space,
+#skills .service-space,
+#expertise .service-space,
+#blogsection .service-space,
+#contact .service-space,
+#resume .service-space,
+#testimonial .service-space {
+  padding-top: 100px;
+  padding-bottom: 50px
+}
+
+@media screen and (max-width:991px) {
+
+  #facts .about-padding {
+    padding: 50px 0
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -304,15 +301,14 @@ a:hover {
   align-items: center;
 }
 
-.hero-image img {
-  width: auto;
-  height: auto;
+.fact-image img {
   border: 8px solid #1a1a1d;
 }
 
 .element
 {
   text-decoration: underline;
+  color: #90e0ef;
 }
 
 canvas.particles-js-canvas-el {
@@ -326,131 +322,39 @@ canvas.particles-js-canvas-el {
   top: 0;
 }
 
-@keyframes circling {
-  0% {
-    transform: rotate(0) translate(-80px) rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg) translate(-80px) rotate(-360deg);
-  }
-}
-
-@keyframes circlereverse {
-  0% {
-    transform: rotate(0) translate(-275px) rotate(0);
-  }
-
-  100% {
-    transform: rotate(-360deg) translate(-275px) rotate(360deg);
-  }
-}
-
-@keyframes floating {
-  0% {
-    transform: translate(0);
-  }
-
-  50% {
-    transform: translate(-50px);
-  }
-
-  100% {
-    transform: translate(0);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 #facts,
+#skills,
 #blogsection,
 #contact,
 #resume,
+#testimonial,
 #expertise {
   padding-top: 15px;
   height: auto;
 }
 
-#facts h4,
-#blogsection h4,
-#contact h4,
-#resume h4,
-#expertise h4 {
-  font-size: 36px;
-  line-height: 55px;
-  font-weight: 700;
-  color: #5ab9ea;
-  font-family: "Times New Roman", Times, serif;
-}
-
-#facts h4 span,
-#blogsection h4 span,
-#contact h4 span,
-#resume h4 span,
-#expertise h4 span {
-  color: var(--primarycolor);
-}
-
 #facts::-webkit-scrollbar,
+#skills::-webkit-scrollbar,
 #blogsection::-webkit-scrollbar,
 #contact::-webkit-scrollbar,
 #resume::-webkit-scrollbar,
+#testimonial::-webkit-scrollbar,
 #expertise::-webkit-scrollbar {
   display: none;
 }
 
-#facts .service-space,
-#blogsection .service-space,
-#contact .service-space,
-#resume .service-space,
-#expertise .service-space {
-  padding-top: 100px;
-  padding-bottom: 50px;
-}
-
-@media screen and (max-width: 991px) {
-
-  #facts .about-padding,
-  #blogsection .about-padding,
-  #contact .about-padding,
-  #resume .about-padding,
-  #expertise .about-padding {
-    padding: 50px 0;
-  }
-}
-
-#facts .card-body,
-#blogsection .card-body,
-#contact .card-body,
-#resume .card-body,
 #expertise .card-body {
   border-radius: 10px;
   -webkit-transition: background 0.3s;
   transition: background 0.3s;
 }
 
-#facts .card-body:hover,
-#blogsection .card-body:hover,
-#contact .card-body:hover,
-#resume .card-body:hover,
 #expertise .card-body:hover {
   overflow: hidden;
   background-color: var(--primarycolor);
   color: #1f2833;
 }
 
-#facts .card-body:hover .theme-color,
-#blogsection .card-body:hover .theme-color,
-#contact .card-body:hover .theme-color,
-#resume .card-body:hover .theme-color,
 #expertise .card-body:hover .theme-color {
   color: #1f2833;
 }
@@ -466,25 +370,6 @@ canvas.particles-js-canvas-el {
 
 .timeline .item {
   position: relative;
-}
-
-.se-pre-con {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background: var(--txtcolor);
-}
-
-.se-pre-con img {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
 }
 
 .form-control,
@@ -580,8 +465,6 @@ footer.footer.light {
     position: relative;
   }
 }
-
-
 
 .back-to-top {
   position: fixed;
