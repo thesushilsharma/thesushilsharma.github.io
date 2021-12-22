@@ -6,6 +6,12 @@
   --txtcolor: #fbeec1;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .dark {
   --primarycolor: #66fcf1;
   --bodycolor: #a8dadc;
@@ -381,7 +387,13 @@ canvas.particles-js-canvas-el {
   background: 0 0;
   border: 1px solid var(--bordercolor);
   outline: 0;
-  box-shadow: none;
+  box-shadow: none; 
+  caret-color: #fff;
+  color: white !important;
+}
+
+::-webkit-input-placeholder {
+  color: white !important;
 }
 
 .blog-item {
