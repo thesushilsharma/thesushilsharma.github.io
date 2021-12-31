@@ -7,10 +7,7 @@ $(document).ready(function () {
   typedJS();
 });
 
-function menuToggler() {
-  "use strict";
 
-}
 /*-------------------------
         TYPED JS 
     www.mattboldt.com
