@@ -176,64 +176,6 @@ h6 {
   box-shadow: none;
 }
 
-.btn-circle {
-  border-radius: 50px;
-}
-
-.btn-social i {
-  width: 47px;
-  height: 47px;
-  font-size: 16px;
-  color: #1f2833;
-  line-height: 45px;
-  margin-right: 6px;
-  transition: all 0.35s;
-}
-
-.btn-social i:hover {
-  transform: translate3d(0, -4px, 0);
-  -webkit-transform: translate3d(0, -4px, 0);
-}
-
-.fb {
-  background-color: #3b5999;
-}
-
-.ig {
-  background: #d6249f;
-  background: radial-gradient(circle at 30% 107%,
-      #fdf497 0%,
-      #fdf497 5%,
-      #fd5949 45%,
-      #d6249f 60%,
-      #285aeb 90%);
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
-}
-
-.linkedin {
-  background-color: #0077b5;
-}
-
-.twitter {
-  background-color: #1ab7ea;
-}
-
-.github {
-  background-color: #fff;
-}
-
-.medium {
-  background-color: #fff;
-}
-
-.stack {
-  background-color: #F48024;
-}
-
-.dev {
-  background-color: #3b49df;
-}
-
 .bottom-0 {
   bottom: 0;
 }
