@@ -97,7 +97,7 @@ h6 {
 
 #facts .service-space,
 #skills .service-space,
-#expertise .service-space,
+#hireme .service-space,
 #blogsection .service-space,
 #contact .service-space,
 #resume .service-space,
@@ -279,7 +279,7 @@ canvas.particles-js-canvas-el {
 #contact,
 #resume,
 #testimonial,
-#expertise {
+#hireme {
   padding-top: 15px;
   height: auto;
 }
@@ -290,23 +290,23 @@ canvas.particles-js-canvas-el {
 #contact::-webkit-scrollbar,
 #resume::-webkit-scrollbar,
 #testimonial::-webkit-scrollbar,
-#expertise::-webkit-scrollbar {
+#hireme::-webkit-scrollbar {
   display: none;
 }
 
-#expertise .card-body {
+#hireme .card-body {
   border-radius: 10px;
   -webkit-transition: background 0.3s;
   transition: background 0.3s;
 }
 
-#expertise .card-body:hover {
+#hireme .card-body:hover {
   overflow: hidden;
   background-color: var(--primarycolor);
   color: #1f2833;
 }
 
-#expertise .card-body:hover .theme-color {
+#hireme .card-body:hover .theme-color {
   color: #1f2833;
 }
 
