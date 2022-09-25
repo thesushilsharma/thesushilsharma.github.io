@@ -102,7 +102,8 @@ h6 {
 #blogsection .service-space,
 #contact .service-space,
 #resume .service-space,
-#testimonial .service-space {
+#testimonial .service-space,
+#work .service-space {
   padding-top: 100px;
   padding-bottom: 50px
 }
@@ -280,7 +281,8 @@ canvas.particles-js-canvas-el {
 #contact,
 #resume,
 #testimonial,
-#hireme {
+#hireme,
+#work {
   padding-top: 15px;
   height: auto;
 }
@@ -438,7 +440,8 @@ footer.footer.light {
   #blog,
   #contact,
   #resume,
-  #hireme {
+  #hireme,
+  #work {
     padding-top: 20px;
   }
 }
