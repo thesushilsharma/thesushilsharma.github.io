@@ -1,9 +1,9 @@
 :root {
   --primarycolor: #66fcf1;
-  --bodycolor: #a8dadc;
+  --bodycolor: #2e9b9e;
   --bodybackground: #0b0c10;
-  --bordercolor: #caf0f8;
-  --txtcolor: #fbeec1;
+  --bordercolor: #8ffcdb;
+  --txtcolor: #dff2e0;
 }
 
 *,
@@ -14,11 +14,12 @@
 
 .dark {
   --primarycolor: #66fcf1;
-  --bodycolor: #a8dadc;
+  --bodycolor: #2e9b9e;
   --bodybackground: #0b0c10;
-  --bordercolor: #caf0f8;
-  --txtcolor: #fbeec1;
+  --bordercolor: #8ffcdb;
+  --txtcolor: #dff2e0;
 }
+
 
 #header-fix {
   width: 100%;
@@ -71,7 +72,7 @@ body, html {
 }
 
 body {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Lucida Console", "Courier New", monospace;
   font-size: 17px;
   background: var(--bodybackground);
   color: var(--txtcolor);
@@ -108,7 +109,7 @@ h6 {
 
 @media screen and (max-width:991px) {
 
-  #facts .about-padding {
+  #facts .service-space {
     padding: 50px 0
   }
 }
@@ -201,7 +202,7 @@ a:hover {
   color: #eae7dc;
   font-size: 36px;
   font-weight: 700;
-  font-family: "Times New Roman", Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #particles-js .user-profile-image {
