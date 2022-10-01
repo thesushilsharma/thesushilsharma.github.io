@@ -18,11 +18,11 @@ function typedJS() {
   var options = {
     strings: [
       'Web Master',
-      'Web Designer',
-      'Web Developer',
+      'Developer Programmer',
       'Front End Web Developer',
+      'Web Developer',
       'Back End Web Developer',
-      'Software Developer'
+      'Web Designer'
     ],
     typeSpeed: 30,
     loop: true,
