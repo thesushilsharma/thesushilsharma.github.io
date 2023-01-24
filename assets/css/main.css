@@ -59,6 +59,7 @@
     width: 100%;
   }
 }
+
 .logo {
   display: block;
   float: left;
@@ -67,7 +68,9 @@
   margin-top: 10px;
   line-height: normal;
 }
-body, html {
+
+body,
+html {
   height: 100%;
 }
 
@@ -258,8 +261,7 @@ a:hover {
   border: 8px solid #1a1a1d;
 }
 
-.element
-{
+.element {
   text-decoration: underline;
   color: #90e0ef;
 }
@@ -300,7 +302,9 @@ canvas.particles-js-canvas-el {
 #hireme .card-body {
   border-radius: 10px;
   -webkit-transition: background 0.3s;
-  transition: background 0.3s;
+  transition: background 0.5s;
+  padding: 50px 35px;
+  margin-bottom: 30px;
 }
 
 #hireme .card-body:hover {
@@ -357,7 +361,7 @@ canvas.particles-js-canvas-el {
   background: 0 0;
   border: 1px solid var(--bordercolor);
   outline: 0;
-  box-shadow: none; 
+  box-shadow: none;
   caret-color: #fff;
   color: white !important;
 }
