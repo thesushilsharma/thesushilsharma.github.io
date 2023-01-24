@@ -44,8 +44,8 @@
   color: var(--primarycolor);
   background: 0 0;
 }
-#header-fix .nav-pills .nav-link:hover {
-  color: dodgerblue;
+#header-fix .nav-pills a.nav-link:hover {
+  color: #007bff;
 }
 
 #header-fix nav.navbar-expand-md .navbar-toggler-right .navbar-toggler-icon {
