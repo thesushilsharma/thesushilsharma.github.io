@@ -52,6 +52,9 @@
   display: block;
   background-color: var(--primarycolor);
 }
+.navbar li a:hover {
+  color: dodgerblue;
+}
 
 @media screen and (max-width: 767px) {
   #header-fix li.nav-item {
