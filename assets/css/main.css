@@ -299,6 +299,10 @@ canvas.particles-js-canvas-el {
   display: none;
 }
 
+#hireme {
+  grid-auto-rows: auto;
+}
+
 #hireme .card-body {
   border-radius: 10px;
   -webkit-transition: background 0.3s;
