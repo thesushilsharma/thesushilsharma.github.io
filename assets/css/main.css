@@ -44,6 +44,9 @@
   color: var(--primarycolor);
   background: 0 0;
 }
+#header-fix .nav-pills .nav-link:hover {
+  color: dodgerblue;
+}
 
 #header-fix nav.navbar-expand-md .navbar-toggler-right .navbar-toggler-icon {
   width: 22px;
@@ -51,9 +54,6 @@
   height: 2px;
   display: block;
   background-color: var(--primarycolor);
-}
-nav li a:hover {
-  color: dodgerblue;
 }
 
 @media screen and (max-width: 767px) {
