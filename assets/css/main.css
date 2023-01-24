@@ -52,7 +52,7 @@
   display: block;
   background-color: var(--primarycolor);
 }
-.navbar li a:hover {
+nav li a:hover {
   color: dodgerblue;
 }
 
