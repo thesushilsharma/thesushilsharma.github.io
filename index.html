@@ -170,7 +170,18 @@
               <div class="row">
                 <div class="col-lg-6">
                   <ul>
-                    <li><i class="fas fa-birthday-cake"></i> <strong>Birthday:</strong> 10 April</li>
+                    <li><i class="fas fa-birthday-cake"></i> <strong>Birthday:</strong>  <script type="text/javascript">
+                      var bdate = new Date("04/10/1999");
+                      var today = new Date();
+                      var age = today.getFullYear() - bdate.getFullYear();
+                      var m = today.getMonth() - bdate.getMonth();
+                      if (m < 0 || (m === 0 && today.getDate() < bdate.getDate())) {
+                        age--;
+                      }
+                      
+                      document.write(age)
+
+                    </script></li>
                     <li><i class="fas fa-graduation-cap"></i> <strong>Degree:</strong> Bachelor of Computer Science*
                     </li>
                   </ul>
