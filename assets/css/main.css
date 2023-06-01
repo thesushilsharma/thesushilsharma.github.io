@@ -1,7 +1,7 @@
 :root {
   --primarycolor: #66fcf1;
   --bodycolor: #2e9b9e;
-  --bodybackground: #0b0c10;
+  --bodybackground: #282F44;
   --bordercolor: #8ffcdb;
   --txtcolor: #dff2e0;
 }
@@ -15,7 +15,7 @@
 .dark {
   --primarycolor: #66fcf1;
   --bodycolor: #2e9b9e;
-  --bodybackground: #0b0c10;
+  --bodybackground: #282F44;
   --bordercolor: #8ffcdb;
   --txtcolor: #dff2e0;
 }
