@@ -1,7 +1,7 @@
 :root {
   --primarycolor: #66fcf1;
   --bodycolor: #2e9b9e;
-  --bodybackground: #282F44;
+  --bodybackground: #282f44f8;
   --bordercolor: #8ffcdb;
   --txtcolor: #dff2e0;
 }
@@ -15,11 +15,10 @@
 .dark {
   --primarycolor: #66fcf1;
   --bodycolor: #2e9b9e;
-  --bodybackground: #282F44;
+  --bodybackground: #282f44f8;
   --bordercolor: #8ffcdb;
   --txtcolor: #dff2e0;
 }
-
 
 #header-fix {
   width: 100%;
@@ -44,6 +43,7 @@
   color: var(--primarycolor);
   background: 0 0;
 }
+
 #header-fix .nav-pills a.nav-link:hover {
   color: #007bff !important;
 }
@@ -111,13 +111,12 @@ h6 {
 #testimonial .service-space,
 #work .service-space {
   padding-top: 100px;
-  padding-bottom: 50px
+  padding-bottom: 50px;
 }
 
-@media screen and (max-width:991px) {
-
+@media screen and (max-width: 991px) {
   #facts .service-space {
-    padding: 50px 0
+    padding: 50px 0;
   }
 }
 
@@ -139,7 +138,6 @@ h6 {
   padding-bottom: 60px;
 }
 
-
 .section-title h2 {
   font-size: 32px;
   font-weight: bold;
@@ -149,7 +147,7 @@ h6 {
 }
 
 .section-title h2::after {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   width: 50px;
@@ -417,11 +415,9 @@ footer.footer.light {
   .hero-image {
     display: none;
   }
-
 }
 
 @media (max-width: 575px) {
-
   .hero-04 .display-table {
     display: table;
   }
@@ -538,7 +534,6 @@ footer.footer.light {
   margin-top: 100px;
   float: left;
   color: #03045e;
-
 }
 
 .reviews {
@@ -551,7 +546,6 @@ footer.footer.light {
   margin-right: 60px;
   float: right;
   color: #03045e;
-
 }
 
 @media screen and (max-width: 600px) {
@@ -612,4 +606,81 @@ footer.footer.light {
 
 #facts .content p:last-child {
   margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Sitelogo
+--------------------------------------------------------------*/
+
+.sitelogo {
+  width: 410px;
+  height: auto;
+  font-family: "Playpen Sans", cursive;
+  font-weight: 400;
+}
+
+.sitelogotext {
+  fill: none;
+  stroke-width: 2px;
+  stroke-linejoin: round;
+  stroke-dasharray: 70px;
+  stroke-dashoffset: 0;
+  -webkit-animation: stroke 6s linear infinite;
+  -moz-animation: stroke 6s linear infinite;
+  animation: stroke 6s linear infinite;
+  font-size: 4em;
+  text-transform: uppercase;
+}
+
+.sitelogotext:nth-child(5n + 1) {
+  stroke: #59ffa0;
+  -webkit-animation-delay: -1.2s;
+  -moz-animation-delay: -1.2s;
+  animation-delay: -1.2s;
+}
+
+.sitelogotext:nth-child(5n + 2) {
+  stroke: #50514f;
+  -webkit-animation-delay: -2.4s;
+  -moz-animation-delay: -2.4s;
+  animation-delay: -2.4s;
+}
+
+.sitelogotext:nth-child(5n + 3) {
+  stroke: #e56b6f;
+  -webkit-animation-delay: -3.6s;
+  -moz-animation-delay: -3.6s;
+  animation-delay: -3.6s;
+}
+
+.sitelogotext:nth-child(5n + 4) {
+  stroke: #fdfff7;
+  -webkit-animation-delay: -4.8s;
+  -moz-animation-delay: -4.8s;
+  animation-delay: -4.8s;
+}
+
+.text:nth-child(5n + 5) {
+  stroke: #26ffe6;
+  -webkit-animation-delay: -6s;
+  -moz-animation-delay: -6s;
+  animation-delay: -6s;
+}
+
+@-webkit-keyframes stroke {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+@-moz-keyframes stroke {
+  to {
+    stroke-dashoffset: -400;
+  }
+}
+
+@keyframes stroke {
+  to {
+    stroke-dashoffset: -400;
+  }
 }

@@ -52,9 +52,18 @@
   <header id="header-fix" class="header fixed-top">
     <nav class="navbar navbar-expand-md">
       <a href="/" class="navbar-brand logo">
-        <span> &lt;</span>
-        <span class="logo-name">The Sushil Sharma</span>
-        <span>/&gt;</span>
+        <svg viewBox="0 0 840 60" class="sitelogo">
+          <symbol id="s-text">
+            <text text-anchor="middle" x="50%" y="50%" dy=".35em">
+              &lt;The Sushil Sharma/&gt;
+            </text>
+          </symbol>
+          <use xlink:href="#s-text" class="sitelogotext"></use>
+          <use xlink:href="#s-text" class="sitelogotext"></use>
+          <use xlink:href="#s-text" class="sitelogotext"></use>
+          <use xlink:href="#s-text" class="sitelogotext"></use>
+          <use xlink:href="#s-text" class="sitelogotext"></use>
+        </svg>
       </a>
       <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse"
         data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
