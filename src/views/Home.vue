@@ -52,7 +52,7 @@
               width="100%" height="100%" transform="translate(50 50)" stroke-width="0"
               style="transition: all 0.3s ease 0s;" stroke="url(#sw-gradient)"></path>
             <image class="h-auto max-w-lg transition-all duration-300 rounded-lg blur-sm hover:blur-none"
-              href="https://github.com/thesushilsharma.png" alt="/" x='15' y='26' width="50" />
+              href="https://github.com/thesushilsharma.png" alt="/" x='18' y='22' width="50" />
           </g>
         </svg>
       </div>
