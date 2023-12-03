@@ -7,7 +7,7 @@
           class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
           Nice to meet you, I'm
           <span
-            class="box-decoration-clone bg-gradient-to-r from-indigo-600 to-pink-500 text-white px-2 hover:box-decoration-slice">{{
+            class="underline decoration-wavy decoration-sky-500">{{
               portfolio.Fname }} {{ portfolio.surname }}</span>!
         </h1>
         <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
