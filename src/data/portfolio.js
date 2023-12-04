@@ -21,9 +21,9 @@ const portfolio = {
       icon: "telegram",
     },
     {
-      name: "Polywork",
-      url: "https://poly.me/thesushilsharma",
-      icon: "polywork",
+      name: "Twitter",
+      url: "https://twitter.com/beingpsyche",
+      icon: "twitter",
     },
   ],
   languages: [
