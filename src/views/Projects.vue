@@ -37,21 +37,28 @@
                                 <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer"
                                     class="mt-3 inline-flex items-center font-semibold text-blue-600">
                                     Repository
-                                    <svg class="w-4 h-4 ml-2 text-black dark:text-white" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
-                                </svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 text-black dark:text-white"
+                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M9 15l6 -6" />
+                                        <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+                                        <path
+                                            d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+                                    </svg>
                                 </a>
                                 
                                 <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer"
                                     class="mt-3 inline-flex items-center font-semibold text-blue-600">
                                     View
-                                    <svg class="w-4 h-4 ml-2 text-black dark:text-white" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
-                                </svg>
+                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 text-black dark:text-white"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+                                        <path d="M11 13l9 -9" />
+                                        <path d="M15 4h5v5" />
+                                    </svg>
                                 </a>
                                 
                             </div>
