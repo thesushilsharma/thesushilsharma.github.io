@@ -9,7 +9,7 @@
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Sushil
                             Sharma</span> -->
 
-                        <svg viewBox="0 0 840 60" class="sitelogo w-full h-auto font-normal">
+                        <svg viewBox="0 0 840 60" class="sitelogo w-full h-auto font-normal bg-gray-900 mr-3 sm:h-9">
                             <symbol id="s-text">
                                 <text text-anchor="middle" x="50%" y="50%" dy=".35em">
                                     &lt;The Sushil Sharma/&gt;
@@ -123,35 +123,35 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
 .sitelogotext:nth-child(5n + 1) {
-  stroke: #59ffa0;
+  stroke: #228cdb;
   -webkit-animation-delay: -1.2s;
   -moz-animation-delay: -1.2s;
   animation-delay: -1.2s;
 }
 
 .sitelogotext:nth-child(5n + 2) {
-  stroke: #50514f;
+  stroke: #FA7921;
   -webkit-animation-delay: -2.4s;
   -moz-animation-delay: -2.4s;
   animation-delay: -2.4s;
 }
 
 .sitelogotext:nth-child(5n + 3) {
-  stroke: #e56b6f;
+  stroke: #D00000;
   -webkit-animation-delay: -3.6s;
   -moz-animation-delay: -3.6s;
   animation-delay: -3.6s;
 }
 
 .sitelogotext:nth-child(5n + 4) {
-  stroke: #fdfff7;
+  stroke: #C3f73a;
   -webkit-animation-delay: -4.8s;
   -moz-animation-delay: -4.8s;
   animation-delay: -4.8s;
 }
 
 .text:nth-child(5n + 5) {
-  stroke: #26ffe6;
+  stroke: #032B43;
   -webkit-animation-delay: -6s;
   -moz-animation-delay: -6s;
   animation-delay: -6s;
