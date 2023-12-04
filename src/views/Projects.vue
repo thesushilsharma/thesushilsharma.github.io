@@ -35,7 +35,7 @@
                             <p class="dark:text-neutral-300">{{ project.period }}</p>
 
                             <div class="mt-5 mb-6 flex gap-2 justify-center font-poppins">
-                                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer"
+                                <a :href="`${project.repo}`" target="_blank" rel="noopener noreferrer"
                                     class="mt-3 inline-flex items-center font-semibold text-blue-600">
                                     Repository
                                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 text-black dark:text-white"
@@ -48,8 +48,7 @@
                                             d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
                                     </svg>
                                 </a>
-                                
-                                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer"
+                                <!-- <a :href="`${project.url}`" target="_blank" rel="noopener noreferrer"
                                     class="mt-3 inline-flex items-center font-semibold text-blue-600">
                                     View
                                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 text-black dark:text-white"
@@ -60,8 +59,7 @@
                                         <path d="M11 13l9 -9" />
                                         <path d="M15 4h5v5" />
                                     </svg>
-                                </a>
-                                
+                                </a> -->
                             </div>
                         </div>
                     </div>
