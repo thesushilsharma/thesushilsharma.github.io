@@ -28,10 +28,11 @@
                             <p class="text-neutral-500 dark:text-neutral-300">{{ project.description }}</p>
                             <div class="flex flex-wrap mt-4 justify-center">
                                 <p v-for="(tech, index) in project.tags" :key="index"
-                                    class="sm:w-1/2 md:w-1/3 text-sm text-white bg-transparent border border-white rounded w-full text-center">
+                                    class="sm:w-1/2 md:w-1/3 text-sm dark:text-white bg-transparent border border-black dark:border-white rounded w-full text-center">
                                     {{ tech }}
                                 </p>
                             </div>
+                            <p class="dark:text-neutral-300">{{ project.period }}</p>
 
                             <div class="mt-5 mb-6 flex gap-2 justify-center font-poppins">
                                 <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer"
