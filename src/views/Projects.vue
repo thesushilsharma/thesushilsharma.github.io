@@ -66,9 +66,11 @@
                 </div>
             </div>
         </div>
+        <CTA />
     </section>
 </template>
 
 <script setup>
 import projects from '../data/projects';
+import CTA from "../components/CTA.vue";
 </script>

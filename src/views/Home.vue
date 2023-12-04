@@ -27,7 +27,7 @@
           </svg>
         </a>
         <a href="/contacts"
-          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+          class="rounded-md bg-white px-3.5 py-2.5 text-base font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whiteinline-flex items-center justify-center text-center border focus:ring-4 focus:ring-gray-100 dark:text-black">
           Hire me
         </a>
       </div>
