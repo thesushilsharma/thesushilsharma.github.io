@@ -17,7 +17,7 @@
           best digital agencies and fantastic customers for the past 4 years to generate some amazing works. And,
           for your company as well, I can make this happen.
         </p>
-        <a :href="`/facts`"
+        <router-link :to="`/facts`"
           class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-gray-900 dark:text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
           Learn more
           <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -25,11 +25,11 @@
               d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
               clip-rule="evenodd"></path>
           </svg>
-        </a>
-        <a :href="`/techstack`"
+        </router-link>
+        <router-link :to="`/techstack`"
           class="rounded-md bg-white px-3.5 py-2.5 text-base font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-whiteinline-flex items-center justify-center text-center border focus:ring-4 focus:ring-gray-100 dark:text-black">
           Hire me
-        </a>
+        </router-link>
       </div>
       <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
         <!--?xml version="1.0" standalone="no"?--> <svg id="sw-js-blob-svg" viewBox="0 0 100 100"
