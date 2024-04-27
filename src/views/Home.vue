@@ -11,8 +11,7 @@
               portfolio.Fname }} {{ portfolio.surname }}</span>!
         </h1>
         <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-          who focuses on creating great web experiences. Since the days when I started working with computers,
-          designing and coding have been my passion, but since 2016 I have been in web design/development. I enjoy
+          who focuses on creating great web experiences. Since the day I started working with computers, programming and debugging have been my passion, but since 2016 I've been into web development. I enjoy
           creating intuitive and usable websites that are beautifully crafted. I have been working with some of the
           best digital agencies and fantastic customers for the past 4 years to generate some amazing works. And,
           for your company as well, I can make this happen.
