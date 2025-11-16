@@ -3,8 +3,19 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
  reactCompiler: true,
  images: {
-    remotePatterns: [new URL('https://placehold.co/600x400.png')],
-  },
+   remotePatterns: [
+     {
+       protocol: 'https',
+       hostname: 'images.unsplash.com',
+       pathname: '/**',
+     },
+     {
+       protocol: 'https',
+       hostname: 'placehold.co',
+       pathname: '/**',
+     },
+   ],
+ },
 };
 
 export default nextConfig;
