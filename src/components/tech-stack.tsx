@@ -1,11 +1,27 @@
 "use client";
 
-import { SiCloudflare, SiDocker, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiVercel } from "@icons-pack/react-simple-icons";
+import {
+  SiCloudflare,
+  SiDocker,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiReact,
+  SiTypescript,
+  SiVercel,
+  SiEthers,
+  SiMongodb,
+  SiCplusplus,
+} from "@icons-pack/react-simple-icons";
 import { motion } from "motion/react";
 import { AnimatedSection } from "./animations/animated-section";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 import { MdOutlineToken } from "react-icons/md";
-import { TbBrandAzure } from "react-icons/tb";
 import { TbApi } from "react-icons/tb";
 
 interface TechItem {
@@ -17,73 +33,97 @@ interface TechItem {
 
 const techStack: TechItem[] = [
   {
+    name: "TypeScript",
+    icon: <SiTypescript className="h-8 w-8 md:h-10 md:w-10" />,
+    category: "frontend",
+    description: "Making code more maintainable and less prone to errors.",
+  },
+  {
     name: "React",
     icon: <SiReact className="h-8 w-8 md:h-10 md:w-10" />,
     category: "frontend",
-    description: "Modern UI library for building interactive interfaces"
+    description: "Modern UI library for building interactive interfaces",
   },
   {
     name: "Next.js",
     icon: <SiNextdotjs className="h-8 w-8 md:h-10 md:w-10" />,
     category: "frontend",
-    description: "Full-stack React framework with SSR and SSG"
+    description: "Full-stack React framework with SSR and SSG",
   },
   {
     name: "Node.js",
     icon: <SiNodedotjs className="h-8 w-8 md:h-10 md:w-10" />,
     category: "backend",
-    description: "JavaScript runtime for server-side development"
+    description: "JavaScript runtime for server-side development",
   },
   {
     name: "APIs",
     icon: <TbApi className="h-8 w-8 md:h-10 md:w-10" />,
     category: "backend",
-    description: "RESTful and GraphQL API development"
+    description: "RESTful and GraphQL API development",
   },
   {
     name: "Blockchain",
     icon: <MdOutlineToken className="h-8 w-8 md:h-10 md:w-10" />,
     category: "backend",
-    description: "Web3 and smart contract integration"
+    description: "Web3 and wallet integration",
+  },
+  {
+    name: "C++",
+    icon: <SiCplusplus className="h-8 w-8 md:h-10 md:w-10" />,
+    category: "backend",
+    description: "DSA and Competitive Programming",
   },
   {
     name: "PostgreSQL",
     icon: <SiPostgresql className="h-8 w-8 md:h-10 md:w-10" />,
     category: "database",
-    description: "Advanced relational database system"
+    description: "Advanced relational (SQL) database system",
+  },
+  {
+    name: "MongoDB",
+    icon: <SiMongodb className="h-8 w-8 md:h-10 md:w-10" />,
+    category: "database",
+    description: "Advanced NoSQL database system",
   },
   {
     name: "Docker",
     icon: <SiDocker className="h-8 w-8 md:h-10 md:w-10" />,
     category: "devops",
-    description: "Containerization and deployment platform"
+    description: "Containerization and deployment platform",
   },
   {
     name: "Vercel",
     icon: <SiVercel className="h-8 w-8 md:h-10 md:w-10" />,
     category: "cloud",
-    description: "Modern deployment platform for frontend apps"
+    description: "Modern deployment platform for frontend apps",
   },
   {
     name: "Cloudflare",
     icon: <SiCloudflare className="h-8 w-8 md:h-10 md:w-10" />,
     category: "cloud",
-    description: "CDN and web security services"
+    description: "CDN and web security services",
   },
   {
-    name: "Azure",
-    icon: <TbBrandAzure className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "cloud",
-    description: "Microsoft cloud computing platform"
+    name: "Ethers.js",
+    icon: <SiEthers className="h-8 w-8 md:h-10 md:w-10" />,
+    category: "backend",
+    description:
+      "Ethers.js is a JavaScript library for interacting with the Ethereum blockchain.",
   },
 ];
 
 const categoryColors = {
-  frontend: "from-blue-500/20 to-cyan-500/20 border-blue-500/30 hover:border-blue-500/60",
-  backend: "from-green-500/20 to-emerald-500/20 border-green-500/30 hover:border-green-500/60",
-  database: "from-purple-500/20 to-violet-500/20 border-purple-500/30 hover:border-purple-500/60",
-  devops: "from-orange-500/20 to-red-500/20 border-orange-500/30 hover:border-orange-500/60",
-  cloud: "from-indigo-500/20 to-blue-500/20 border-indigo-500/30 hover:border-indigo-500/60",
+  frontend:
+    "from-blue-500/20 to-cyan-500/20 border-blue-500/30 hover:border-blue-500/60",
+  backend:
+    "from-green-500/20 to-emerald-500/20 border-green-500/30 hover:border-green-500/60",
+  database:
+    "from-purple-500/20 to-violet-500/20 border-purple-500/30 hover:border-purple-500/60",
+  devops:
+    "from-orange-500/20 to-red-500/20 border-orange-500/30 hover:border-orange-500/60",
+  cloud:
+    "from-indigo-500/20 to-blue-500/20 border-indigo-500/30 hover:border-indigo-500/60",
 };
 
 export function TechStackSection() {
@@ -115,8 +155,8 @@ export function TechStackSection() {
             </h2>
           </div>
           <p className="max-w-[700px] text-muted-foreground md:text-xl leading-relaxed">
-            I work with a carefully selected set of modern technologies to build scalable,
-            performant, and maintainable applications.
+            I work with a carefully selected set of modern technologies to build
+            scalable, performant, and maintainable applications.
           </p>
         </motion.div>
 
@@ -132,23 +172,25 @@ export function TechStackSection() {
                   duration: 0.5,
                   delay: index * 0.1,
                   type: "spring",
-                  stiffness: 100
+                  stiffness: 100,
                 }}
                 whileHover={{
                   scale: 1.05,
-                  transition: { duration: 0.2 }
+                  transition: { duration: 0.2 },
                 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <div className={`
+                    <div
+                      className={`
                       group relative overflow-hidden rounded-xl p-6 md:p-8
                       bg-gradient-to-br ${categoryColors[tech.category]}
                       backdrop-blur-sm border transition-all duration-300
                       hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1
                       cursor-pointer
-                    `}>
+                    `}
+                    >
                       {/* Shine effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
 
@@ -167,7 +209,9 @@ export function TechStackSection() {
                     className="max-w-xs p-3 bg-popover/95 backdrop-blur-sm border border-border/50"
                   >
                     <div className="space-y-1">
-                      <p className="font-medium text-popover-foreground">{tech.name}</p>
+                      <p className="font-medium text-popover-foreground">
+                        {tech.name}
+                      </p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         {tech.description}
                       </p>
@@ -189,7 +233,9 @@ export function TechStackSection() {
         >
           {Object.entries(categoryColors).map(([category, colors]) => (
             <div key={category} className="flex items-center space-x-2">
-              <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${colors.split(' ')[0]} ${colors.split(' ')[1]}`} />
+              <div
+                className={`w-3 h-3 rounded-full bg-gradient-to-r ${colors.split(" ")[0]} ${colors.split(" ")[1]}`}
+              />
               <span className="text-xs font-medium text-muted-foreground capitalize">
                 {category}
               </span>
