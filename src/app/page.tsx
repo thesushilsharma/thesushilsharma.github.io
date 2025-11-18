@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Separator } from "@/components/ui/separator";
 import { WorkExperienceSection } from "@/components/work-section";
 import { AcademicExperienceSection } from "@/components/academic-section";
+import { BlogListSection } from "@/components/blog-section";
 
 export default function Home() {
   return (
@@ -22,6 +23,8 @@ export default function Home() {
       <AcademicExperienceSection />
       <Separator className="my-12 md:my-24" />
       <GitHubActivitySection />
+      <Separator className="my-12 md:my-24" />
+      <BlogListSection />
       <Separator className="my-12 md:my-24" />
       <ContactSection />
       <Footer />
