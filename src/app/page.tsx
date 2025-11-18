@@ -1,5 +1,6 @@
 import { GitHubActivitySection } from "@/components/github-activity-section";
 import { HeroSection } from "@/components/hero";
+import { ProjectsSection } from "@/components/projects-section";
 import { ContactSection } from "@/components/contact-section";
 import { TechStackSection } from "@/components/tech-stack";
 import { Footer } from "@/components/footer";
@@ -15,6 +16,8 @@ export default function Home() {
       <TechStackSection />
       <Separator className="my-12 md:my-24" />
       <WorkExperienceSection />
+      <Separator className="my-12 md:my-24" />
+      <ProjectsSection />
       <Separator className="my-12 md:my-24" />
       <AcademicExperienceSection />
       <Separator className="my-12 md:my-24" />
