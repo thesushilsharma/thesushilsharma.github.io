@@ -1,30 +1,38 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, Variants, useScroll, useMotionValueEvent } from "motion/react";
-
-interface SocialLink {
-  _id: string;
-  platform: string;
-  url: string;
-}
+import { socialLinks } from "@/config/site";
 
 interface HeaderProps {
-  social: SocialLink[];
+  social?: SocialLink[];
 }
 
-const Header = ({ social }: HeaderProps) => {
+// useIsMobile hook
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    
+    const mql = window.matchMedia("(max-width: 767px)");
+    const onChange = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    mql.addEventListener("change", onChange);
+    setIsMobile(window.innerWidth < 768);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  return !!isMobile;
+}
+
+
+
+const Header = ({ social= socialLinks  }: HeaderProps) => {
   const [isActive, setIsActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const { scrollY } = useScroll();
-
-  // Track mobile viewport
-  useState(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  });
 
   // Track scroll position
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -56,8 +64,9 @@ const Header = ({ social }: HeaderProps) => {
       <div className="flex justify-between items-center p-6 md:p-8">
         <motion.a
           href="/"
-          className={`text-2xl font-bold transition-colors ${isScrolled ? "text-gray-900" : "text-white"
-            }`}
+          className={`text-2xl font-bold transition-colors ${
+            isScrolled ? "text-gray-900" : "text-white"
+          }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -162,12 +171,13 @@ function Button({
   return (
     <div className="relative">
       <motion.button
-        className={`px-6 py-3 rounded-full font-medium transition-all ${isActive
-          ? "bg-white text-gray-900"
-          : isScrolled
+        className={`px-6 py-3 rounded-full font-medium transition-all ${
+          isActive
+            ? "bg-white text-gray-900"
+            : isScrolled
             ? "bg-gray-900 text-white"
             : "bg-white text-gray-900"
-          }`}
+        }`}
         onClick={toggleMenu}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}

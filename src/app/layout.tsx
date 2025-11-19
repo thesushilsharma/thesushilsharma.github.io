@@ -31,11 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main className="relative">
-          <Header social={[
-            { _id: "1", platform: "Twitter", url: "https://twitter.com" },
-            { _id: "2", platform: "GitHub", url: "https://github.com/thesushilsharma" },
-            { _id: "3", platform: "LinkedIn", url: "https://linkedin.com/in/thesushilsharma" },
-          ]} />
+          <Header />
           {children}</main>
       </body>
     </html>
