@@ -6,3 +6,10 @@ interface SocialLink {
   _id: string;
   url: string;
 }
+
+interface TechItem {
+  name: string;
+  icon: React.ComponentType<any>;
+  category: "frontend" | "backend" | "database" | "devops" | "cloud";
+  description: string;
+}

@@ -4,21 +4,7 @@ import { motion } from "motion/react";
 import { AnimatedSection } from "./animations/animated-section";
 import { GraduationCap } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-
-const academicData = [
-  {
-    degree: "Bachelor of Computer Science",
-    institution: "University of Wollongong",
-    duration: "2018 - 2023",
-    description: "Specialized in Web Development and Artificial Intelligence.",
-  },
-  {
-    degree: "12th Grade in Computer Science",
-    institution: "CBSE",
-    duration: "2015 - 2017",
-    description: "Co-op experience, focusing on full-stack development and cloud computing.",
-  },
-];
+import { academicData } from "@/config/site";
 
 const containerVariants = {
   hidden: { opacity: 0 },

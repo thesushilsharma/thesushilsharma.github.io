@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, Variants, useScroll, useMotionValueEvent } from "motion/react";
-import { socialLinks } from "@/config/site";
+import { socialLinks, navLinks } from "@/config/site";
+
 
 interface HeaderProps {
   social?: SocialLink[];
@@ -188,16 +189,6 @@ function Button({
     </div>
   );
 }
-
-const navLinks = [
-  { title: "Home", href: "/" },
-  { title: "About", href: "#about" },
-  { title: "Academics", href: "#academic-experience" },
-  { title: "Experience", href: "#academic-experience" },
-  { title: "Projects", href: "#projects" },
-  { title: "Blog", href: "#blog" },
-  { title: "Contact", href: "#contact" },
-];
 
 const perspective: Variants = {
   initial: { y: 50, opacity: 0 },

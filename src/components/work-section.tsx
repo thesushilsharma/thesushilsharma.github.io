@@ -4,58 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card";
 import { AnimatedSection } from "./animations/animated-section";
-
-const workData = [
-  {
-    title: "Software Engineer",
-    company: "PropFi",
-    duration: "May 2025 - Present",
-    description: "Developed a tokenized real estate platform on Ethereum (Base) with secure APIs using TypeScript & Node.js. Built responsive frontend with Next.js, React, and Tailwind. Integrated Swagger, end-to-end encryption, and Firebase Cloud Messaging.",
-    position: new THREE.Vector3(0, 5, 0),
-  },
-  {
-    title: "Software Engineer",
-    company: "Web3Ocean",
-    duration: "May 2024 - April 2025",
-    description: "Developed scalable apps and RESTful APIs using TypeScript, Node.js, Express, Next.js, and React. Built crypto trading solutions and blockchain apps (Ethereum, Solana, Sui) using Ethers.js. Created Telegram bots and integrated third-party APIs.",
-    position: new THREE.Vector3(4, 3.5, -2),
-  },
-  {
-    title: "IT Support Intern",
-    company: "Middle East Communications Networks",
-    duration: "Apr 2023 - Oct 2023",
-    description: "Provided technical support for hardware, software, Azure VDI, and Windows servers. Configured new employee laptops, delivered IT training programs, and leveraged Power BI to analyze IT data and optimize operations.",
-    position: new THREE.Vector3(-3, 2, 3),
-  },
-  {
-    title: "Software Engineer",
-    company: "Sunlight Events Organizing L.L.C",
-    duration: "Dec 2021 - Mar 2023",
-    description: "Developed and maintained secure, high-performing company website with MySQL and MongoDB integration. Implemented web analytics solutions and provided extensive IT support including hardware and software troubleshooting.",
-    position: new THREE.Vector3(3.5, 0.5, -3),
-  },
-  {
-    title: "Web and IT Support",
-    company: "Ask International Group",
-    duration: "Jan 2021 - Nov 2021",
-    description: "Built and hosted website, configured mail server and DNS, integrated Cloudflare for security. Utilized SQL for database management and provided technical support. Optimized website performance with SEO strategies, achieving 15% increase in organic traffic.",
-    position: new THREE.Vector3(-4, -1, 2.5),
-  },
-  {
-    title: "Junior Web Developer",
-    company: "Global Valve Solution",
-    duration: "Sept 2020 - Dec 2020",
-    description: "Collaborated with development team to build and maintain user-friendly company website. Implemented new features including API integration and efficient page routing, enhancing user experience and functionality.",
-    position: new THREE.Vector3(2.5, -2.5, -2.5),
-  },
-  {
-    title: "Web Programmer",
-    company: "Mad About Dance",
-    duration: "Mar 2019 - Sept 2020",
-    description: "Designed and developed responsive websites offering optimal user experience across various devices. Increased website traffic through effective SEO and web analytics strategies. Integrated Cloudflare services for enhanced security and performance.",
-    position: new THREE.Vector3(-2, -4, 1.5),
-  },
-];
+import { workData } from "@/config/site";
 
 export function WorkExperienceSection() {
   const mountRef = useRef<HTMLDivElement>(null);

@@ -11,57 +11,7 @@ import { Badge } from "./ui/badge";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
-
-const blogPosts = [
-  {
-    title: "These online classes help you stay engaged whilestaying home.",
-    description:
-      "Explore how online classes can keep you productive and engaged from home.",
-    image:
-      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=600&h=400&fit=crop",
-    hint: "code abstract",
-    date: "Sept 27, 2018",
-    readTime: "8 min read",
-    category: "Online Learning",
-    link: "https://thesushilsharma.blogspot.com/2018/09/e-learning.html",
-  },
-  {
-    title: "Companies hire from these coding websites",
-    description:
-      "Discover top coding websites where companies find talented developers.",
-    image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop",
-    hint: "3d abstract",
-    date: "May 31, 2020",
-    readTime: "12 min read",
-    category: "Online Learning",
-    link: "https://thesushilsharma.blogspot.com/2020/05/challenges.html",
-  },
-  {
-    title: "Elevate your programming life with GIT CI/CD",
-    description:
-      "Learn how GIT CI/CD can streamline and enhance your programming workflow.",
-    image:
-      "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=600&h=400&fit=crop",
-    hint: "server code",
-    date: "March 07, 2023",
-    readTime: "25 min read",
-    category: "Backend",
-    link: "https://thesushilsharma.hashnode.dev/git-set-and-bash",
-  },
-  {
-    title: "In 5 minutes, how to make a website",
-    description:
-      "A quick guide to building your own website in just five minutes.",
-    image:
-      "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop",
-    hint: "server code",
-    date: "January 01, 2021",
-    readTime: "10 min read",
-    category: "Frontend",
-    link: "https://thesushilsharma.blogspot.com/2021/01/tailwindcss.html",
-  },
-];
+import { blogPosts } from "@/config/site";
 
 export function BlogListSection() {
   return (

@@ -1,18 +1,5 @@
 "use client";
 
-import {
-  SiCloudflare,
-  SiDocker,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPostgresql,
-  SiReact,
-  SiTypescript,
-  SiVercel,
-  SiEthers,
-  SiMongodb,
-  SiCplusplus,
-} from "@icons-pack/react-simple-icons";
 import { motion } from "motion/react";
 import { AnimatedSection } from "./animations/animated-section";
 import {
@@ -21,97 +8,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-import { MdOutlineToken } from "react-icons/md";
-import { TbApi } from "react-icons/tb";
-
-interface TechItem {
-  name: string;
-  icon: React.ReactNode;
-  category: "frontend" | "backend" | "database" | "devops" | "cloud";
-  description: string;
-}
-
-const techStack: TechItem[] = [
-  {
-    name: "TypeScript",
-    icon: <SiTypescript className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "frontend",
-    description: "Making code more maintainable and less prone to errors.",
-  },
-  {
-    name: "React",
-    icon: <SiReact className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "frontend",
-    description: "Modern UI library for building interactive interfaces",
-  },
-  {
-    name: "Next.js",
-    icon: <SiNextdotjs className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "frontend",
-    description: "Full-stack React framework with SSR and SSG",
-  },
-  {
-    name: "Node.js",
-    icon: <SiNodedotjs className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "backend",
-    description: "JavaScript runtime for server-side development",
-  },
-  {
-    name: "APIs",
-    icon: <TbApi className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "backend",
-    description: "RESTful and GraphQL API development",
-  },
-  {
-    name: "Blockchain",
-    icon: <MdOutlineToken className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "backend",
-    description: "Web3 and wallet integration",
-  },
-  {
-    name: "C++",
-    icon: <SiCplusplus className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "backend",
-    description: "DSA and Competitive Programming",
-  },
-  {
-    name: "PostgreSQL",
-    icon: <SiPostgresql className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "database",
-    description: "Advanced relational (SQL) database system",
-  },
-  {
-    name: "MongoDB",
-    icon: <SiMongodb className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "database",
-    description: "Advanced NoSQL database system",
-  },
-  {
-    name: "Docker",
-    icon: <SiDocker className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "devops",
-    description: "Containerization and deployment platform",
-  },
-  {
-    name: "Vercel",
-    icon: <SiVercel className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "cloud",
-    description: "Modern deployment platform for frontend apps",
-  },
-  {
-    name: "Cloudflare",
-    icon: <SiCloudflare className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "cloud",
-    description: "CDN and web security services",
-  },
-  {
-    name: "Ethers.js",
-    icon: <SiEthers className="h-8 w-8 md:h-10 md:w-10" />,
-    category: "backend",
-    description:
-      "Ethers.js is a JavaScript library for interacting with the Ethereum blockchain.",
-  },
-];
+import { techStack } from "@/config/site";
 
 const categoryColors = {
   frontend:
@@ -196,7 +93,7 @@ export function TechStackSection() {
 
                       <div className="relative z-10 flex flex-col items-center space-y-3">
                         <div className="text-foreground/80 group-hover:text-foreground transition-colors duration-300">
-                          {tech.icon}
+                          <tech.icon className="h-8 w-8 md:h-10 md:w-10" />
                         </div>
                         <span className="text-sm font-medium text-foreground/90 group-hover:text-foreground transition-colors duration-300">
                           {tech.name}

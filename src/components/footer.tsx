@@ -4,8 +4,7 @@ import React, { useState, useEffect } from "react";
 
 import { Button } from "./ui/button";
 import { motion } from "motion/react";
-import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
-import { SiLinkedin } from "react-icons/si";
+import { socialLinks } from "@/config/site";
 
 export function Footer() {
   const [year, setYear] = useState<number | null>(null);
@@ -13,12 +12,6 @@ export function Footer() {
   useEffect(() => {
     setYear(new Date().getFullYear());
   }, []);
-  
-  const socialLinks = [
-    { name: "GitHub", icon: SiGithub, url: "https://github.com" },
-    { name: "LinkedIn", icon: SiLinkedin, url: "https://linkedin.com" },
-    { name: "Twitter", icon: SiX, url: "https://twitter.com" },
-  ];
 
   return (
     <motion.footer 
@@ -34,8 +27,8 @@ export function Footer() {
         </p>
         <div className="flex items-center gap-2">
           {socialLinks.map((social) => (
-            <Button key={social.name} variant="ghost" size="icon" asChild>
-              <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+            <Button key={social._id} variant="ghost" size="icon" asChild>
+              <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.platform}>
                 <social.icon className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
               </a>
             </Button>
