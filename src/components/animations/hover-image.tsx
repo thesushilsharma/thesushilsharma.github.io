@@ -3,6 +3,7 @@
 import { useMotionValue, motion, useSpring, useTransform } from "motion/react";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { TextReveal } from "./typography";
 
 interface HoverImageProps {
@@ -12,6 +13,9 @@ interface HoverImageProps {
   price: string;
 }
 
+const MotionLink = motion.create(Link);
+const MotionImage = motion.create(Image);
+
 export const HoverImage = ({
   heading,
   imgSrc,
@@ -19,8 +23,6 @@ export const HoverImage = ({
   price,
 }: HoverImageProps) => {
   const ref = useRef<HTMLAnchorElement | null>(null);
-
-  const MotionLink = motion.create(Link);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -72,7 +74,7 @@ export const HoverImage = ({
         </p>
       </div>
 
-      <motion.img
+      <MotionImage
         style={{
           top,
           left,
@@ -85,6 +87,8 @@ export const HoverImage = ({
         }}
         transition={{ type: "spring" }}
         src={imgSrc}
+        width={256}
+        height={192}
         className="absolute z-0 h-24 w-32 rounded-lg object-cover md:h-48 md:w-64 max-md:hidden"
         alt={`Image representing a link for ${heading}`}
       />
