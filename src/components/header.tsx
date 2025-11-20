@@ -118,8 +118,7 @@ const Header = ({ social = socialLinks }: HeaderProps) => {
       >
         <motion.a
           href="/"
-          className={`text-2xl font-bold transition-colors relative z-10 ${isScrolled ? "text-gray-900" : "text-white"
-            }`}
+          className={`text-2xl font-bold transition-colors relative z-10 ${isScrolled ? "text-foreground" : "text-foreground"}`}
           whileHover={{ scale: 1.05, x: 5 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -130,7 +129,6 @@ const Header = ({ social = socialLinks }: HeaderProps) => {
         <MenuToggle
           isActive={isActive}
           toggleMenu={() => setIsActive(!isActive)}
-          isScrolled={isScrolled}
         />
       </motion.div>
 
@@ -238,12 +236,11 @@ export default Header;
 interface MenuToggleProps {
   isActive: boolean;
   toggleMenu: () => void;
-  isScrolled: boolean;
 }
 
-function MenuToggle({ isActive, toggleMenu, isScrolled }: MenuToggleProps) {
-  const topColor = isScrolled ? "bg-gray-900 text-white" : "bg-white text-gray-900";
-  const bottomColor = "bg-white text-gray-900";
+function MenuToggle({ isActive, toggleMenu }: MenuToggleProps) {
+  const topColor = "bg-foreground text-background";
+  const bottomColor = "bg-white text-black";
 
   return (
     <motion.button

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { Copy, Check, Terminal } from "lucide-react";
 import { Button } from "./ui/button";
@@ -114,7 +114,12 @@ export function CodeBlock({
     }
   }, [code]);
 
-  const lines = code.split('\n');
+  const lines = useMemo(() => {
+    return code.split('\n').map((line, index) => ({
+      id: `line-${index}`,
+      content: line
+    }));
+  }, [code]);
 
   return (
     <motion.div
@@ -182,7 +187,7 @@ export function CodeBlock({
             <code className="block min-w-max">
               {lines.map((line, index) => (
                 <div
-                  key={`line-${index}`}
+                  key={line.id}
                   className="flex items-start gap-4 px-2 py-0.5 hover:bg-white/5 rounded-sm transition-colors"
                 >
                   {showLineNumbers && (
@@ -190,7 +195,7 @@ export function CodeBlock({
                       {index + 1}
                     </span>
                   )}
-                  <CodeLine content={line} />
+                  <CodeLine content={line.content} />
                 </div>
               ))}
             </code>
