@@ -1,19 +1,13 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { SiGithub, SiX } from "@icons-pack/react-simple-icons";
-import { SiLinkedin } from "react-icons/si";
 import { Button } from "./ui/button";
 import { motion, useScroll, useTransform, Variants } from "motion/react";
 import Link from "next/link";
 import { CodeBlock } from "./code-block";
 import { useRef, useMemo } from "react";
-
-const socialLinks = [
-  { name: "GitHub", icon: SiGithub, url: "https://github.com" },
-  { name: "LinkedIn", icon: SiLinkedin, url: "https://linkedin.com" },
-  { name: "Twitter", icon: SiX, url: "https://twitter.com" },
-];
+import { GlitchText } from "./ui/glitch-text";
+import { socialLinks } from "@/config/site";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -128,10 +122,7 @@ export function HeroSection() {
             variants={itemVariants}
             className="font-headline text-4xl font-bold tracking-tighter text-foreground sm:text-5xl md:text-6xl lg:text-7xl relative overflow-hidden"
           >
-            {/* Glitch effect */}
-            <span className="absolute top-0 left-0 -z-10 text-primary/10 animate-pulse" aria-hidden="true" style={{ clipPath: 'inset(0 0 0 0)', transform: 'translate(-5px, 5px)' }}>Versatile Full-Stack Developer</span>
-            <span className="absolute top-0 left-0 -z-10 text-primary/5 animate-pulse" aria-hidden="true" style={{ clipPath: 'inset(0 0 0 0)', transform: 'translate(5px, -5px)' }}>Versatile Full-Stack Developer</span>
-            Versatile Full-Stack Developer
+            <GlitchText text="Versatile Full-Stack Developer" />
           </motion.h1>
 
           <motion.p
@@ -165,13 +156,13 @@ export function HeroSection() {
           <motion.div variants={itemVariants} className="mt-8 flex items-center gap-4">
             {socialLinks.map((social, index) => (
               <motion.div
-                key={social.name}
+                key={social._id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 + index * 0.1 }}
               >
                 <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 transition-all duration-300" asChild>
-                  <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+                  <a href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.platform}>
                     <social.icon className="h-6 w-6 text-muted-foreground transition-colors hover:text-primary" />
                   </a>
                 </Button>
