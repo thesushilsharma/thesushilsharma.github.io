@@ -1,31 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "motion/react";
 import type { Variants } from "motion/react";
 import { navLinks, socialLinks } from "@/config/site";
 import { TextReveal } from "./animations/typography";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HeaderProps {
   social?: typeof socialLinks;
-}
-
-// useIsMobile hook
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const mql = window.matchMedia("(max-width: 767px)");
-    const onChange = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    mql.addEventListener("change", onChange);
-    setIsMobile(window.innerWidth < 768);
-    return () => mql.removeEventListener("change", onChange);
-  }, []);
-
-  return !!isMobile;
 }
 
 const Header = ({ social = socialLinks }: HeaderProps) => {
@@ -136,9 +118,8 @@ const Header = ({ social = socialLinks }: HeaderProps) => {
       >
         <motion.a
           href="/"
-          className={`text-2xl font-bold transition-colors relative z-10 ${
-            isScrolled ? "text-gray-900" : "text-white"
-          }`}
+          className={`text-2xl font-bold transition-colors relative z-10 ${isScrolled ? "text-gray-900" : "text-white"
+            }`}
           whileHover={{ scale: 1.05, x: 5 }}
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -146,7 +127,7 @@ const Header = ({ social = socialLinks }: HeaderProps) => {
           <TextReveal>THESUSHILSHARMA</TextReveal>
         </motion.a>
 
-        <Button
+        <MenuToggle
           isActive={isActive}
           toggleMenu={() => setIsActive(!isActive)}
           isScrolled={isScrolled}
@@ -169,8 +150,8 @@ const Header = ({ social = socialLinks }: HeaderProps) => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ 
-                duration: 0.4, 
+              transition={{
+                duration: 0.4,
                 delay: 0.2,
                 ease: [0.215, 0.61, 0.355, 1]
               }}
@@ -254,22 +235,25 @@ const Header = ({ social = socialLinks }: HeaderProps) => {
 
 export default Header;
 
-interface ButtonProps {
+interface MenuToggleProps {
   isActive: boolean;
   toggleMenu: () => void;
   isScrolled: boolean;
 }
 
-function Button({ isActive, toggleMenu, isScrolled }: ButtonProps) {
+function MenuToggle({ isActive, toggleMenu, isScrolled }: MenuToggleProps) {
   const topColor = isScrolled ? "bg-gray-900 text-white" : "bg-white text-gray-900";
-  const bottomColor = isActive ? "bg-gray-900 text-white" : "bg-white text-gray-900";
+  const bottomColor = "bg-white text-gray-900";
 
   return (
-    <motion.div
-      className="relative w-[100px] h-10 rounded-full overflow-hidden cursor-pointer z-10"
+    <motion.button
+      className="relative w-[100px] h-10 rounded-full overflow-hidden cursor-pointer z-10 border-none outline-none focus-visible:ring-2 focus-visible:ring-primary"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      onClick={toggleMenu}
+      aria-label={isActive ? "Close menu" : "Open menu"}
+      aria-expanded={isActive}
     >
       <motion.div
         className="absolute inset-0 w-full h-full"
@@ -279,19 +263,17 @@ function Button({ isActive, toggleMenu, isScrolled }: ButtonProps) {
       >
         <motion.div
           className={`absolute top-0 left-0 h-full w-full flex items-center justify-center font-medium transition-colors ${topColor}`}
-          onClick={toggleMenu}
         >
           <TextReveal>Menu</TextReveal>
         </motion.div>
 
         <motion.div
           className={`absolute top-full left-0 h-full w-full flex items-center justify-center font-medium transition-colors ${bottomColor}`}
-          onClick={toggleMenu}
         >
           <TextReveal>Close</TextReveal>
         </motion.div>
       </motion.div>
-    </motion.div>
+    </motion.button>
   );
 }
 
@@ -312,9 +294,9 @@ const perspective: Variants = {
     opacity: 0,
     y: -10,
     scale: 0.95,
-    transition: { 
-      duration: 0.3, 
-      ease: [0.76, 0, 0.24, 1] 
+    transition: {
+      duration: 0.3,
+      ease: [0.76, 0, 0.24, 1]
     },
   },
 };
@@ -335,9 +317,9 @@ const slideIn: Variants = {
     opacity: 0,
     y: 10,
     scale: 0.9,
-    transition: { 
-      duration: 0.3, 
-      ease: [0.76, 0, 0.24, 1] 
+    transition: {
+      duration: 0.3,
+      ease: [0.76, 0, 0.24, 1]
     },
   },
 };
