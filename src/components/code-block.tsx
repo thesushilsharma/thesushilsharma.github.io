@@ -1,226 +1,170 @@
 "use client";
 
-import { motion } from "motion/react";
-import { useState, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
-import { Copy, Check, Terminal } from "lucide-react";
-import { Button } from "./ui/button";
 
-interface CodeLineProps {
-  content: string;
-}
+// ------------------ TAB DATA ------------------
 
-const CodeLine = ({ content }: CodeLineProps) => {
-  // Improved syntax highlighting with vibrant colors
-  const renderHighlightedCode = (text: string) => {
-    const keywords = [
-      'import', 'export', 'default', 'const', 'let', 'var', 'function',
-      'return', 'if', 'else', 'for', 'while', 'class', 'interface', 'type',
-      'async', 'await', 'try', 'catch', 'finally', 'throw', 'new', 'from'
-    ];
+const TABS = [
+  {
+    id: "index",
+    label: "index.tsx",
+    code: `import Hero from "@/components/Hero";
 
-    const builtins = ['console', 'window', 'document', 'Math', 'JSON', 'Promise'];
-
-    const parts = text.split(/("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\/\/.*$|[{}()[\];,.]|\s+)/g);
-
-    return parts.map((part, index) => {
-      const key = `${index}`;
-
-      if (!part) return null;
-
-      // Comments - Muted grey but readable
-      if (part.startsWith('//')) {
-        return <span key={key} className="text-zinc-500 italic">{part}</span>;
-      }
-
-      // Strings - Vibrant Green
-      if (/^["']/.test(part)) {
-        return <span key={key} className="text-emerald-400">{part}</span>;
-      }
-
-      // Keywords - Vibrant Pink/Purple
-      if (keywords.includes(part)) {
-        return <span key={key} className="text-pink-400 font-medium">{part}</span>;
-      }
-
-      // Builtins/Types - Vibrant Blue
-      if (builtins.includes(part) || /^[A-Z]/.test(part)) {
-        return <span key={key} className="text-blue-400">{part}</span>;
-      }
-
-      // Numbers - Orange
-      if (/^\d+/.test(part)) {
-        return <span key={key} className="text-orange-400">{part}</span>;
-      }
-
-      // Default Text - Off-white for high contrast against dark bg
-      return <span key={key} className="text-zinc-100">{part}</span>;
-    });
-  };
-
+export default function Home() {
   return (
-    <span className="flex-1 leading-relaxed font-mono text-[13px]">
-      {renderHighlightedCode(content)}
-    </span>
+    <main className="min-h-screen bg-black text-white">
+      <Hero />
+    </main>
   );
-};
+}`,
+  },
+  {
+    id: "portfolio",
+    label: "portfolio.tsx",
+    code: `import { motion } from "motion/react";
 
-interface CodeBlockProps {
-  code?: string;
-  filename?: string;
-  showLineNumbers?: boolean;
-  className?: string;
-}
-
-const defaultCode = `// portfolio.tsx
-import { motion } from "motion/react";
-
-const Portfolio = () => {
-  const skills = [
-    "React", "Next.js", "TypeScript",
-    "Node.js", "AI/ML", "Blockchain"
-  ];
-
+export const Portfolio = () => {
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="portfolio"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="p-6"
     >
-      <h1>Full-Stack Developer</h1>
-      <p>Building amazing experiences</p>
+      <h1 className="text-3xl font-bold">Full-Stack Developer</h1>
+      <p className="opacity-70 mt-2">
+        Building elegant interfaces & smooth experiences.
+      </p>
     </motion.div>
   );
+};`,
+  },
+  {
+    id: "button",
+    label: "ui/button.tsx",
+    code: `import { cn } from "@/lib/utils";
+
+export function Button({ className, ...props }) {
+  return (
+    <button
+      className={cn(
+        "px-4 py-2 bg-white text-black rounded-md hover:bg-zinc-200 transition",
+        className
+      )}
+      {...props}
+    />
+  );
+}`,
+  },
+];
+
+// ------------------ TYPEWRITER ------------------
+
+const useTypewriter = (text: string) => {
+  const [output, setOutput] = useState("");
+  const indexRef = useRef(0);
+
+  useEffect(() => {
+    setOutput("");
+    indexRef.current = 0;
+
+    let animationFrame: number;
+
+    const type = () => {
+      const current = indexRef.current;
+      if (current < text.length) {
+        const nextChar = text[current];
+
+        // mechanical jitter timing (random 5–25ms delay)
+        const jitter = Math.random() * 20 + 5;
+
+        setOutput((o) => o + nextChar);
+        indexRef.current++;
+
+        animationFrame = window.setTimeout(() => {
+          requestAnimationFrame(type);
+        }, jitter);
+      }
+    };
+
+    requestAnimationFrame(type);
+
+    return () => {
+      clearTimeout(animationFrame);
+    };
+  }, [text]);
+
+  return output;
 };
 
-export default Portfolio;`;
+// ------------------ MAIN COMPONENT ------------------
 
-export function CodeBlock({
-  code = defaultCode,
-  filename = "portfolio.tsx",
-  showLineNumbers = true,
-  className
-}: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+export function CodeBlock() {
+  const [activeTab, setActiveTab] = useState(0);
 
-  const copyToClipboard = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(code);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy code:', err);
-    }
-  }, [code]);
+  // autoplay tab switching
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % TABS.length);
+    }, 15000);
 
-  const lines = useMemo(() => {
-    return code.split('\n').map((line, index) => ({
-      id: `line-${index}`,
-      content: line
-    }));
-  }, [code]);
+    return () => clearInterval(interval);
+  }, []);
+
+  const code = TABS[activeTab].code;
+  const animatedText = useTypewriter(code);
 
   return (
-    <motion.div
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={{
-        initial: { y: 40, opacity: 0, scale: 0.95 },
-        animate: {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-        },
-      }}
-      className={cn("relative group perspective-1000", className)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="relative w-full max-w-3xl mx-auto mt-10 select-none">
       <motion.div
-        animate={{
-          rotateX: isHovered ? 2 : 0,
-          rotateY: isHovered ? -2 : 0,
-          scale: isHovered ? 1.02 : 1,
-        }}
-        transition={{
-          duration: 0.4,
-          ease: "easeOut"
-        }}
-        // Darker background for better contrast: bg-[#09090b] (Zinc 950)
-        className="rounded-xl border border-white/10 bg-[#09090b]/90 backdrop-blur-md shadow-2xl overflow-hidden transform-gpu"
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="overflow-hidden rounded-xl bg-[#0B0B0D] border border-white/10 shadow-[0_0_80px_-20px_rgba(255,255,255,0.1)]"
       >
-        {/* Window Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/5">
+        {/* TERMINAL HEADER */}
+        <div className="flex justify-between items-center px-4 py-2 border-b border-white/10 bg-white/5">
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-[#FF5F56] shadow-inner" />
-            <div className="h-3 w-3 rounded-full bg-[#FFBD2E] shadow-inner" />
-            <div className="h-3 w-3 rounded-full bg-[#27C93F] shadow-inner" />
+            <span className="h-3 w-3 rounded-full bg-[#FF5F56]" />
+            <span className="h-3 w-3 rounded-full bg-[#FFBD2E]" />
+            <span className="h-3 w-3 rounded-full bg-[#27C93F]" />
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-zinc-400 font-medium">
-            <Terminal className="h-3.5 w-3.5" />
-            <span className="font-mono tracking-tight">{filename}</span>
+          {/* TABS */}
+          <div className="flex items-center gap-4">
+            {TABS.map((tab, i) => (
+              <motion.button
+                key={tab.id}
+                onClick={() => setActiveTab(i)}
+                className={cn(
+                  "text-xs font-mono px-2 py-1 rounded-md transition",
+                  activeTab === i
+                    ? "bg-white/10 text-white"
+                    : "text-zinc-500 hover:text-zinc-300"
+                )}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {tab.label}
+              </motion.button>
+            ))}
           </div>
 
-          <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={copyToClipboard}
-              className="h-6 w-6 text-zinc-400 hover:text-zinc-100 hover:bg-white/10"
-            >
-              {copied ? (
-                <Check className="h-3.5 w-3.5 text-emerald-400" />
-              ) : (
-                <Copy className="h-3.5 w-3.5" />
-              )}
-            </Button>
-          </div>
+          <div className="w-6" />
         </div>
 
-        {/* Code Content */}
-        <div className="relative bg-black/20">
-          <pre className="p-4 overflow-x-auto max-h-[500px] scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-            <code className="block min-w-max">
-              {lines.map((line, index) => (
-                <div
-                  key={line.id}
-                  className="flex items-start gap-4 px-2 py-0.5 hover:bg-white/5 rounded-sm transition-colors"
-                >
-                  {showLineNumbers && (
-                    <span className="text-zinc-600 text-xs font-mono select-none w-6 text-right flex-shrink-0 pt-[2px]">
-                      {index + 1}
-                    </span>
-                  )}
-                  <CodeLine content={line.content} />
-                </div>
-              ))}
-            </code>
+        {/* CODE WINDOW */}
+        <div className="relative p-4 overflow-hidden min-h-[260px]">
+          <pre className="text-[11.5px] leading-relaxed font-mono text-zinc-100 whitespace-pre-wrap overflow-hidden">
+            {animatedText}
           </pre>
 
-          {/* Gradient overlay for scroll indication */}
-          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#09090b]/40 to-transparent pointer-events-none" />
+          {/* glossy overlay */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-white/2 to-transparent" />
         </div>
-
-        {/* Glossy overlay */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
       </motion.div>
-
-      {/* Copy feedback */}
-      <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.9 }}
-        animate={{
-          opacity: copied ? 1 : 0,
-          y: copied ? -40 : 10,
-          scale: copied ? 1 : 0.9
-        }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-zinc-900/90 text-white px-3 py-1.5 rounded-md text-xs font-medium shadow-xl border border-white/10 backdrop-blur-sm z-50 pointer-events-none"
-      >
-        Copied to clipboard!
-      </motion.div>
-    </motion.div>
+    </div>
   );
 }
