@@ -3,7 +3,17 @@
 import { motion } from "motion/react";
 import { AnimatedSection } from "./animations/animated-section";
 import { GraduationCap } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineConnector,
+  TimelineIcon,
+  TimelineContent,
+  TimelineHeader,
+  TimelineTitle,
+  TimelineDescription,
+  TimelineTime,
+} from "@/components/ui/timeline";
 import { academicData } from "@/config/site";
 
 const containerVariants = {
@@ -28,6 +38,8 @@ const itemVariants = {
 };
 
 export function AcademicExperienceSection() {
+  const MotionTimelineItem = motion(TimelineItem);
+
   return (
     <AnimatedSection id="academic-experience">
       <div className="flex flex-col items-center text-center space-y-4 mb-12">
@@ -41,25 +53,28 @@ export function AcademicExperienceSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="relative max-w-3xl mx-auto"
+        className="max-w-3xl mx-auto"
       >
-        <div className="absolute left-6 top-0 h-full w-0.5 bg-border -z-10" />
-        {academicData.map((item, index) => (
-          <motion.div key={index} variants={itemVariants} className="pl-16 mb-12 relative">
-             <div className="absolute left-6 -translate-x-1/2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-primary text-primary-foreground">
-                <GraduationCap className="w-6 h-6" />
-              </div>
-              <Card className="shadow-lg hover:shadow-primary/20 transition-shadow">
-                <CardHeader>
-                  <CardTitle>{item.degree}</CardTitle>
-                  <CardDescription>{item.institution} | {item.duration}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>{item.description}</p>
-                </CardContent>
-              </Card>
-          </motion.div>
-        ))}
+        <Timeline>
+          {academicData.map((item, index) => (
+            <MotionTimelineItem key={index} variants={itemVariants}>
+              {index !== academicData.length - 1 && <TimelineConnector />}
+              <TimelineIcon icon={GraduationCap} />
+              <TimelineContent>
+                <TimelineHeader>
+                  <TimelineTitle>{item.degree}</TimelineTitle>
+                  <TimelineTime>{item.duration}</TimelineTime>
+                </TimelineHeader>
+                <TimelineDescription className="text-base text-foreground font-medium">
+                  {item.institution}
+                </TimelineDescription>
+                <TimelineDescription className="mt-2">
+                  {item.description}
+                </TimelineDescription>
+              </TimelineContent>
+            </MotionTimelineItem>
+          ))}
+        </Timeline>
       </motion.div>
     </AnimatedSection>
   );
