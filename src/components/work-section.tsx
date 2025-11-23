@@ -1,253 +1,156 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import * as THREE from "three";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "./ui/card";
-import { AnimatedSection } from "./animations/animated-section";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue
+} from "motion/react";
+import { Briefcase, Code, Server, Database, Globe, Zap, ChevronRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { workData } from "@/config/site";
 
-export function WorkExperienceSection() {
-  const mountRef = useRef<HTMLDivElement>(null);
-  const [selectedJob, setSelectedJob] = useState<(typeof workData)[0] | null>(workData[0]);
+function useParallax(value: MotionValue<number>, distance: number) {
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
 
-  useEffect(() => {
-    if (!mountRef.current) return;
+function JobItem({ job, index }: { job: typeof workData[0]; index: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref });
+  // Parallax effect: Move the card slightly against the scroll direction
+  const y = useParallax(scrollYProgress, 50);
 
-    const currentMount = mountRef.current;
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, currentMount.clientWidth / currentMount.clientHeight, 0.1, 1000);
-    camera.position.z = 10;
+  // Opacity/Scale entry animation
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.9, 1], [0.8, 1, 1, 0.8]);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    currentMount.appendChild(renderer.domElement);
+  const isEven = index % 2 === 0;
 
-    const jobObjects: THREE.Mesh[] = [];
-    const group = new THREE.Group();
-
-    workData.forEach((job, index) => {
-      // Create different sphere sizes and colors based on job seniority and type
-      const isCurrentJob = index === 0;
-      const isSeniorRole = job.title.toLowerCase().includes('engineer') && !job.title.toLowerCase().includes('intern');
-      const isInternship = job.title.toLowerCase().includes('intern');
-
-      const sphereSize = isCurrentJob ? 1.3 : isSeniorRole ? 1.1 : isInternship ? 0.8 : 1.0;
-      const geometry = new THREE.SphereGeometry(sphereSize, 32, 32);
-
-      // Color coding: Current job (gold), Senior roles (teal), Internships (purple), Others (blue)
-      let color = 0x4f46e5; // Default blue
-      if (isCurrentJob) color = 0xf59e0b; // Gold for current
-      else if (isSeniorRole) color = 0x06b6d4; // Cyan for senior roles
-      else if (isInternship) color = 0x8b5cf6; // Purple for internships
-
-      const material = new THREE.MeshStandardMaterial({
-        color: color,
-        roughness: 0.3,
-        metalness: 0.7,
-        emissive: isCurrentJob ? 0x332211 : 0x000000,
-      });
-
-      const sphere = new THREE.Mesh(geometry, material);
-      sphere.position.copy(job.position);
-      sphere.userData = { id: index, job };
-      jobObjects.push(sphere);
-      group.add(sphere);
-
-      // Add a subtle glow ring for current job
-      if (isCurrentJob) {
-        const ringGeometry = new THREE.RingGeometry(1.5, 1.7, 32);
-        const ringMaterial = new THREE.MeshBasicMaterial({
-          color: 0xf59e0b,
-          transparent: true,
-          opacity: 0.3,
-          side: THREE.DoubleSide,
-        });
-        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-        ring.position.copy(job.position);
-        ring.lookAt(camera.position);
-        group.add(ring);
-      }
-    });
-
-    scene.add(group);
-
-    // Create smooth curved connections between jobs
-    for (let i = 0; i < jobObjects.length - 1; i++) {
-      const start = jobObjects[i].position;
-      const end = jobObjects[i + 1].position;
-
-      // Create a smooth curve with control points for better flow
-      const midPoint = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5);
-      const offset = new THREE.Vector3(
-        (Math.random() - 0.5) * 2,
-        (Math.random() - 0.5) * 2,
-        (Math.random() - 0.5) * 2
-      ).multiplyScalar(0.5);
-      midPoint.add(offset);
-
-      const curve = new THREE.CatmullRomCurve3([start, midPoint, end]);
-      const tubeGeometry = new THREE.TubeGeometry(curve, 64, 0.08, 8, false);
-
-      // Gradient-like effect by varying opacity along the timeline
-      const opacity = 0.3 + (i / jobObjects.length) * 0.4;
-      const lineMaterial = new THREE.MeshBasicMaterial({
-        color: 0x6366f1,
-        transparent: true,
-        opacity: opacity
-      });
-
-      const line = new THREE.Mesh(tubeGeometry, lineMaterial);
-      group.add(line);
-    }
-
-
-    // Enhanced lighting setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
-    scene.add(ambientLight);
-
-    // Main spotlight following the current job
-    const spotLight = new THREE.SpotLight(0xf59e0b, 30, 50, Math.PI / 6, 0.3);
-    spotLight.position.set(5, 8, 5);
-    spotLight.target.position.copy(workData[0].position);
-    scene.add(spotLight);
-    scene.add(spotLight.target);
-
-    // Accent lights for depth
-    const pointLight1 = new THREE.PointLight(0x06b6d4, 15, 30);
-    pointLight1.position.set(8, 5, -8);
-    scene.add(pointLight1);
-
-    const pointLight2 = new THREE.PointLight(0x8b5cf6, 12, 25);
-    pointLight2.position.set(-8, -5, 8);
-    scene.add(pointLight2);
-
-    // Rim light for better definition
-    const rimLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    rimLight.position.set(-10, 10, -10);
-    scene.add(rimLight);
-
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2(-100, -100); // Initialize off-screen
-    let intersected: THREE.Object3D | null = null;
-
-    const onMouseMove = (event: MouseEvent) => {
-      if (!currentMount) return;
-      const rect = currentMount.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / currentMount.clientWidth) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / currentMount.clientHeight) * 2 + 1;
-    };
-    currentMount.addEventListener('mousemove', onMouseMove);
-
-    const onClick = () => {
-      if (intersected) {
-        setSelectedJob(intersected.userData.job);
-      }
-    }
-    currentMount.addEventListener('click', onClick);
-
-
-    const handleResize = () => {
-      if (currentMount) {
-        camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-
-    let time = 0;
-    const animate = () => {
-      requestAnimationFrame(animate);
-      time += 0.01;
-
-      // Smooth, organic rotation
-      group.rotation.y += 0.002;
-      group.rotation.x = Math.sin(time * 0.3) * 0.1;
-      group.rotation.z = Math.cos(time * 0.2) * 0.05;
-
-      // Animate individual spheres with subtle floating motion
-      jobObjects.forEach((sphere, index) => {
-        const originalY = workData[index].position.y;
-        sphere.position.y = originalY + Math.sin(time + index * 0.5) * 0.1;
-
-        // Subtle pulsing for current job
-        if (index === 0) {
-          const scale = 1 + Math.sin(time * 2) * 0.05;
-          sphere.scale.setScalar(scale);
-        }
-      });
-
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(jobObjects);
-
-      if (intersects.length > 0) {
-        if (intersected !== intersects[0].object) {
-          // Reset previous intersection
-          if (intersected && intersected instanceof THREE.Mesh) {
-            intersected.material.emissive.setHex(0x000000);
-            intersected.scale.setScalar(1);
-          }
-
-          // Highlight new intersection
-          intersected = intersects[0].object;
-          if (intersected instanceof THREE.Mesh) {
-            intersected.material.emissive.setHex(0x444444);
-            intersected.scale.setScalar(1.2);
-          }
-          currentMount.style.cursor = 'pointer';
-        }
-      } else {
-        if (intersected && intersected instanceof THREE.Mesh) {
-          intersected.material.emissive.setHex(0x000000);
-          intersected.scale.setScalar(1);
-        }
-        intersected = null;
-        currentMount.style.cursor = 'default';
-      }
-
-      renderer.render(scene, camera);
-    };
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      currentMount.removeEventListener('mousemove', onMouseMove);
-      currentMount.removeEventListener('click', onClick);
-      if (currentMount) {
-        currentMount.removeChild(renderer.domElement);
-      }
-    };
-  }, []);
+  // Icon selection logic
+  let Icon = Briefcase;
+  if (job.title.toLowerCase().includes("engineer")) Icon = Code;
+  if (job.title.toLowerCase().includes("support")) Icon = Server;
+  if (job.description.toLowerCase().includes("database")) Icon = Database;
+  if (job.description.toLowerCase().includes("web")) Icon = Globe;
 
   return (
-    <AnimatedSection id="work-experience">
-      <div className="flex flex-col items-center text-center space-y-4 mb-8">
-        <h2 className="font-headline text-3xl font-bold tracking-tighter text-primary sm:text-4xl">Work Experience</h2>
-        <p className="max-w-[700px] text-muted-foreground md:text-xl">
-          An interactive timeline of my professional journey. Click on the nodes to see details.
-        </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-        <div ref={mountRef} className="md:col-span-2 h-[400px] md:h-[500px] w-full rounded-lg border bg-card" />
-        <div className="md:col-span-1">
-          {selectedJob ? (
-            <Card className="shadow-lg bg-card/50 backdrop-blur-sm transition-all duration-500">
-              <CardHeader>
-                <CardTitle>{selectedJob.title}</CardTitle>
-                <CardDescription>{selectedJob.company} | {selectedJob.duration}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>{selectedJob.description}</p>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="flex items-center justify-center h-full text-muted-foreground">
-              <p>Select a node to see job details.</p>
-            </div>
+    <section
+      ref={ref}
+      className={`relative flex flex-col md:flex-row items-center ${isEven ? "md:flex-row-reverse" : ""} gap-8 py-16`}
+    >
+      {/* Timeline Node (Static relative to the row) */}
+      <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center z-20">
+        <motion.div
+          style={{ scale, opacity }}
+          className="w-4 h-4 rounded-full bg-background border-2 border-primary shadow-[0_0_10px_rgba(var(--primary),0.5)]"
+        >
+          {index === 0 && (
+            <div className="absolute -inset-2 rounded-full border border-primary/30 animate-ping"></div>
           )}
+        </motion.div>
+      </div>
+
+      {/* Date/Meta Column */}
+      <div className="hidden md:flex w-1/2 justify-end px-8 items-center">
+        <motion.div
+          style={{ opacity }}
+          className={`text-sm font-mono text-muted-foreground flex items-center gap-2 ${isEven ? "flex-row-reverse text-right" : ""}`}
+        >
+          <span className="px-2 py-1 rounded bg-secondary/50 border border-border">
+            {job.duration}
+          </span>
+          <div className="h-px w-8 bg-border"></div>
+        </motion.div>
+      </div>
+
+      {/* Content Card with Parallax */}
+      <div className="w-full md:w-1/2 pl-16 md:pl-0 md:px-8">
+        <motion.div style={{ y, opacity }}>
+          <Card className="relative overflow-hidden border-primary/10 bg-card/50 backdrop-blur-sm hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-colors">
+            <CardHeader className="pb-2">
+              <div className="flex flex-col space-y-1">
+                <div className="flex items-center justify-between">
+                  <Badge variant="outline" className="mb-2 w-fit border-primary/20 text-primary">
+                    {job.company}
+                  </Badge>
+                  <span className="md:hidden text-xs font-mono text-muted-foreground">
+                    {job.duration}
+                  </span>
+                </div>
+                <CardTitle className="text-lg font-bold flex items-center gap-2">
+                  <Icon size={18} className="text-primary" />
+                  {job.title}
+                </CardTitle>
+              </div>
+            </CardHeader>
+
+            <CardContent className="text-sm text-muted-foreground space-y-4">
+              <p className="leading-relaxed">
+                {job.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 pt-2">
+                {["React", "TypeScript", "Node.js"].map((tech, i) => (
+                  <div key={i} className="flex items-center text-xs text-primary/70 bg-primary/5 px-2 py-0.5 rounded-full">
+                    <Zap size={10} className="mr-1" />
+                    {tech}
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+export function WorkExperienceSection() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  return (
+    <div id="work-experience" className="w-full py-20 relative overflow-hidden bg-background/50" ref={containerRef}>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="font-headline text-3xl font-bold tracking-tighter text-primary sm:text-4xl">
+            Professional Journey
+          </h2>
+          <p className="max-w-[700px] mx-auto text-muted-foreground md:text-xl">
+            A parallax timeline of my technical evolution.
+          </p>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
+          {/* Static Background Line */}
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/10 transform -translate-x-1/2"></div>
+
+          {/* Animated Progress Line */}
+          <motion.div
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-purple-500 to-blue-500 transform -translate-x-1/2 origin-top"
+            style={{ scaleY }}
+          />
+
+          <div className="space-y-0"> {/* Removed space-y-12 to let parallax handle spacing visually */}
+            {workData.map((job, index) => (
+              <JobItem key={index} job={job} index={index} />
+            ))}
+          </div>
         </div>
       </div>
-    </AnimatedSection>
+    </div>
   );
 }
