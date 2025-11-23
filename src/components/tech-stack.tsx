@@ -38,7 +38,7 @@ export function TechStackSection() {
             I work with a carefully selected set of modern technologies to build
             scalable, performant, and maintainable applications.
           </p>
-          <div className="-mt-20">
+          <div className="-mt-16">
             <RadialOrbital items={techStack} />
           </div>
         </motion.div>

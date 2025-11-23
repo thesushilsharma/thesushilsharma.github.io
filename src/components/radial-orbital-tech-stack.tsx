@@ -21,70 +21,70 @@ interface RadialOrbitalTechStackProps {
 
 const categoryStyles = {
   frontend: {
-    textColor: "text-blue-300",
-    bg: "bg-blue-500/10",
+    textColor: "text-blue-400",
+    bg: "bg-blue-500/20",
     border: "border-blue-400",
-    borderOpacity: "/50",
-    shadow: "shadow-blue-400/20",
-    highlightBg: "bg-blue-500/20",
-    highlightBorder: "border-blue-400",
+    borderOpacity: "/70",
+    shadow: "shadow-blue-400/30",
+    highlightBg: "bg-blue-500/30",
+    highlightBorder: "border-blue-300",
     accent: "from-blue-400 via-blue-500 to-blue-600",
-    hoverBg: "bg-blue-500/5",
+    hoverBg: "bg-blue-500/10",
   },
   backend: {
-    textColor: "text-green-300",
-    bg: "bg-green-500/10",
+    textColor: "text-green-400",
+    bg: "bg-green-500/20",
     border: "border-green-400",
-    borderOpacity: "/50",
-    shadow: "shadow-green-400/20",
-    highlightBg: "bg-green-500/20",
-    highlightBorder: "border-green-400",
+    borderOpacity: "/70",
+    shadow: "shadow-green-400/30",
+    highlightBg: "bg-green-500/30",
+    highlightBorder: "border-green-300",
     accent: "from-green-400 via-green-500 to-green-600",
-    hoverBg: "bg-green-500/5",
+    hoverBg: "bg-green-500/10",
   },
   database: {
-    textColor: "text-purple-300",
-    bg: "bg-purple-500/10",
+    textColor: "text-purple-400",
+    bg: "bg-purple-500/20",
     border: "border-purple-400",
-    borderOpacity: "/50",
-    shadow: "shadow-purple-400/20",
-    highlightBg: "bg-purple-500/20",
-    highlightBorder: "border-purple-400",
+    borderOpacity: "/70",
+    shadow: "shadow-purple-400/30",
+    highlightBg: "bg-purple-500/30",
+    highlightBorder: "border-purple-300",
     accent: "from-purple-400 via-purple-500 to-purple-600",
-    hoverBg: "bg-purple-500/5",
+    hoverBg: "bg-purple-500/10",
   },
   devops: {
-    textColor: "text-orange-300",
-    bg: "bg-orange-500/10",
+    textColor: "text-orange-400",
+    bg: "bg-orange-500/20",
     border: "border-orange-400",
-    borderOpacity: "/50",
-    shadow: "shadow-orange-400/20",
-    highlightBg: "bg-orange-500/20",
-    highlightBorder: "border-orange-400",
+    borderOpacity: "/70",
+    shadow: "shadow-orange-400/30",
+    highlightBg: "bg-orange-500/30",
+    highlightBorder: "border-orange-300",
     accent: "from-orange-400 via-orange-500 to-orange-600",
-    hoverBg: "bg-orange-500/5",
+    hoverBg: "bg-orange-500/10",
   },
   cloud: {
-    textColor: "text-cyan-300",
-    bg: "bg-cyan-500/10",
+    textColor: "text-cyan-400",
+    bg: "bg-cyan-500/20",
     border: "border-cyan-400",
-    borderOpacity: "/50",
-    shadow: "shadow-cyan-400/20",
-    highlightBg: "bg-cyan-500/20",
-    highlightBorder: "border-cyan-400",
+    borderOpacity: "/70",
+    shadow: "shadow-cyan-400/30",
+    highlightBg: "bg-cyan-500/30",
+    highlightBorder: "border-cyan-300",
     accent: "from-cyan-400 via-cyan-500 to-cyan-600",
-    hoverBg: "bg-cyan-500/5",
+    hoverBg: "bg-cyan-500/10",
   },
   default: {
-    textColor: "text-white",
-    bg: "bg-white/10",
+    textColor: "text-gray-200",
+    bg: "bg-white/20",
     border: "border-white",
-    borderOpacity: "/40",
-    shadow: "shadow-white/20",
-    highlightBg: "bg-white/20",
+    borderOpacity: "/60",
+    shadow: "shadow-white/30",
+    highlightBg: "bg-white/30",
     highlightBorder: "border-white",
     accent: "from-gray-400 via-gray-500 to-gray-600",
-    hoverBg: "bg-white/5",
+    hoverBg: "bg-white/10",
   },
 } as const;
 
@@ -222,7 +222,7 @@ export default function RadialOrbital({ items }: RadialOrbitalTechStackProps) {
 
   const calculateNodePosition = (index: number, total: number) => {
     const angle = ((index / total) * 360 + rotationAngle) % 360;
-    const radius = 200;
+    const radius = 280;
     const radian = (angle * Math.PI) / 180;
 
     const x = radius * Math.cos(radian) + centerOffset.x;
@@ -308,7 +308,7 @@ export default function RadialOrbital({ items }: RadialOrbitalTechStackProps) {
             </div>
           </div>
 
-          <div className="absolute w-96 h-96 rounded-full border border-white/10"></div>
+          <div className="absolute w-[560px] h-[560px] rounded-full border border-primary/5"></div>
 
           {orbitalItems.map((item, index) => {
             const position = calculateNodePosition(index, orbitalItems.length);
@@ -387,7 +387,7 @@ export default function RadialOrbital({ items }: RadialOrbitalTechStackProps) {
                 <div
                   className={cn(
                     "absolute top-12 whitespace-nowrap text-xs font-semibold tracking-wider transition-all duration-300",
-                    isExpanded ? "text-black scale-125" : `${categoryStyle.textColor}/70`
+                    isExpanded ? "text-black scale-125" : categoryStyle.textColor
                   )}
                 >
                   {item.name}
