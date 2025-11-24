@@ -38,7 +38,7 @@ const itemVariants = {
 };
 
 export function AcademicExperienceSection() {
-  const MotionTimelineItem = motion(TimelineItem);
+  const MotionTimelineItem = motion.create(TimelineItem);
 
   return (
     <AnimatedSection id="academic-experience">
@@ -57,7 +57,7 @@ export function AcademicExperienceSection() {
       >
         <Timeline>
           {academicData.map((item, index) => (
-            <MotionTimelineItem key={index} variants={itemVariants}>
+            <MotionTimelineItem key={`${item.degree}-${item.institution}`} variants={itemVariants}>
               {index !== academicData.length - 1 && <TimelineConnector />}
               <TimelineIcon icon={GraduationCap} />
               <TimelineContent>
