@@ -2,119 +2,102 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { cn } from "@/lib/utils";
+import TypingText from "./animations/typing-text";
 
 // ------------------ TAB DATA ------------------
 
 const TABS = [
   {
-    id: "index",
-    label: "index.tsx",
-    code: `import Hero from "@/components/Hero";
+    id: "cpp",
+    label: "solver.cpp",
+    code: `#include <iostream>
+#include <vector>
+#include <algorithm>
 
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-black text-white">
-      <Hero />
-    </main>
-  );
-}`,
-  },
-  {
-    id: "portfolio",
-    label: "portfolio.tsx",
-    code: `import { motion } from "motion/react";
+template <typename T>
+class MatrixSolver {
+public:
+    void optimize(std::vector<T>& data) {
+        // SIMD-optimized parallel processing
+        #pragma omp parallel for
+        for (size_t i = 0; i < data.size(); ++i) {
+            data[i] = compute_gradient(data[i]);
+        }
+    }
 
-export const Portfolio = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="p-6"
-    >
-      <h1 className="text-3xl font-bold">Full-Stack Developer</h1>
-      <p className="opacity-70 mt-2">
-        Building elegant interfaces & smooth experiences.
-      </p>
-    </motion.div>
-  );
+private:
+    T compute_gradient(T value) {
+        return value * 0.99f + 0.01f; // Momentum
+    }
 };`,
   },
   {
-    id: "button",
-    label: "ui/button.tsx",
-    code: `import { cn } from "@/lib/utils";
+    id: "blockchain",
+    label: "contract.ts",
+    code: `import { useContractRead, useContractWrite } from 'wagmi'
+import { parseEther } from 'viem'
+import { abi } from './abi'
 
-export function Button({ className, ...props }) {
-  return (
-    <button
-      className={cn(
-        "px-4 py-2 bg-white text-black rounded-md hover:bg-zinc-200 transition",
-        className
-      )}
-      {...props}
-    />
-  );
+export function useSwap() {
+  const { writeAsync } = useContractWrite({
+    address: '0x...',
+    abi,
+    functionName: 'swapExactTokensForETH'
+  })
+
+  const handleSwap = async (amount: string) => {
+    try {
+      await writeAsync({
+        args: [parseEther(amount), 0n, [], Date.now()],
+        value: 0n,
+      })
+    } catch (err) {
+      console.error("Transaction failed", err)
+    }
+  }
+
+  return { handleSwap }
 }`,
+  },
+  {
+    id: "jupyter",
+    label: "analysis.ipynb",
+    code: `import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load blockchain transaction data
+df = pd.read_csv('transactions.csv')
+
+# Analyze gas fee trends
+plt.figure(figsize=(12, 6))
+sns.lineplot(data=df, x='block_number', y='gas_price')
+plt.title('Gas Price Volatility (7D)')
+plt.show()
+
+# Calculate moving average
+df['ma_50'] = df['gas_price'].rolling(window=50).mean()
+print(df.head())`,
   },
 ];
 
 // ------------------ TYPEWRITER ------------------
 
-const useTypewriter = (text: string) => {
-  const [output, setOutput] = useState("");
-  const indexRef = useRef(0);
-
-  useEffect(() => {
-    setOutput("");
-    indexRef.current = 0;
-
-    let animationFrame: number;
-
-    const type = () => {
-      const current = indexRef.current;
-      if (current < text.length) {
-        const nextChar = text[current];
-
-        // mechanical jitter timing (random 5–25ms delay)
-        const jitter = Math.random() * 20 + 5;
-
-        setOutput((o) => o + nextChar);
-        indexRef.current++;
-
-        animationFrame = window.setTimeout(() => {
-          requestAnimationFrame(type);
-        }, jitter);
-      }
-    };
-
-    requestAnimationFrame(type);
-
-    return () => {
-      clearTimeout(animationFrame);
-    };
-  }, [text]);
-
-  return output;
-};
-
-// ------------------ MAIN COMPONENT ------------------
-
-export function CodeBlock() {
+export default function CodeBlock() {
   const [activeTab, setActiveTab] = useState(0);
+  const [key, setKey] = useState(0);
 
   // autoplay tab switching
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTab((prev) => (prev + 1) % TABS.length);
+      setKey((k) => k + 1);
     }, 15000);
 
     return () => clearInterval(interval);
   }, []);
 
   const code = TABS[activeTab].code;
-  const animatedText = useTypewriter(code);
 
   return (
     <div className="relative w-full max-w-3xl mx-auto mt-10 select-none">
@@ -137,13 +120,14 @@ export function CodeBlock() {
             {TABS.map((tab, i) => (
               <motion.button
                 key={tab.id}
-                onClick={() => setActiveTab(i)}
-                className={cn(
-                  "text-xs font-mono px-2 py-1 rounded-md transition",
-                  activeTab === i
+                onClick={() => {
+                  setActiveTab(i);
+                  setKey((k) => k + 1);
+                }}
+                className={`text-xs font-mono px-2 py-1 rounded-md transition ${activeTab === i
                     ? "bg-white/10 text-white"
                     : "text-zinc-500 hover:text-zinc-300"
-                )}
+                  }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -158,7 +142,17 @@ export function CodeBlock() {
         {/* CODE WINDOW */}
         <div className="relative p-4 overflow-hidden min-h-[260px]">
           <pre className="text-[11.5px] leading-relaxed font-mono text-zinc-100 whitespace-pre-wrap overflow-hidden">
-            {animatedText}
+            <TypingText
+              key={key}
+              text={code}
+              as="span"
+              typingSpeed={25}
+              loop={false}
+              showCursor={true}
+              cursorClassName="h-4"
+              variableSpeed={{ min: 8, max: 25 }}
+              className="inline-block"
+            />
           </pre>
 
           {/* glossy overlay */}

@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion, useScroll, useTransform, Variants } from "motion/react";
 import Link from "next/link";
-import { CodeBlock } from "./code-block";
+import CodeBlock from "./code-block";
 import { useRef, useMemo } from "react";
 import { GlitchText } from "./ui/glitch-text";
 import { socialLinks } from "@/config/site";
